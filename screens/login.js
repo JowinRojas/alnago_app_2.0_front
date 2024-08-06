@@ -1,21 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ActivityIndicator } from 'react-native';
 
 export default function Login({navigation}) {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 bg-red-500">
+      <StatusBar />
       <Text>Login</Text>
-      <StatusBar style="auto" />
+      <ActivityIndicator size='large'/>
       <Button title='Home' onPress={() => navigation.navigate("home")} />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
