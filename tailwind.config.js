@@ -7,7 +7,13 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'alnago-1': '#f1d12b',
+        'alnago-2': '#211915',
+        'alnago-3': '#ff9933',
+      },
+    },
   },
   plugins: [],
 }
