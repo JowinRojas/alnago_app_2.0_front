@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { Link } from "expo-router";
 
 export function Main() {
@@ -9,10 +9,10 @@ export function Main() {
 
         <Text>Main</Text>
 
-        <Link href="/login" className="mt-10">
-          <View className="flex w-20 h-10 bg-alnago-2 justify-center items-center rounded">
-            <Text className="text-white">Ir a Login</Text>
-          </View>
+        <Link asChild href="/login" className="mt-10">
+          <Pressable>
+            <Text className="flex text-black">Ir a Login</Text>
+          </Pressable>
         </Link>
 
       </View>
