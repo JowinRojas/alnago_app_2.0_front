@@ -11,7 +11,7 @@ export default function App() {
     <SafeAreaProvider>
       <View>
         <StatusBar style="auto"></StatusBar>
-        <Index />
+        <Menu />
       </View>
     </SafeAreaProvider>
   );
