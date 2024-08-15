@@ -6,11 +6,11 @@ export default function Home() {
     <View className="w-full min-h-full">
       <Stack.Screen
         options={{
-          headerTitle: "Calendario",
+          headerTitle: "Inventarios",
         }}
       />
       <View className="w-full h-full justify-center items-center">
-        <Text className="text-alnago-2 text-4xl">Calendario</Text>
+        <Text className="text-alnago-2 text-4xl">Inventarios</Text>
       </View>
     </View>
   );

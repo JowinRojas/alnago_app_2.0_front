@@ -1,30 +1,53 @@
-import { Button, StyleSheet, Text, View } from "react-native";
+import { Link } from "expo-router";
+import { Alert, Image, Pressable, Text, View } from "react-native";
 
 export default function Rutas() {
+  const createTwoButtonAlert = () =>
+    Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
+      {
+        text: "Cancel",
+      },
+      { cancelable: false, text: "OK", onPress: () => (location = "/") },
+    ]);
+
   return (
-    <View style={[styles.container, styles.navigationContainer]}>
-      <Text style={styles.paragraph}>I'm in the Drawer!</Text>
-      <Button
-        title="Close drawer"
-        onPress={() => drawer.current.closeDrawer()}
-      />
+    <View className="w-full h-full bg-alnago-1 justify-center items-center">
+      <View className="w-11/12 h-5/6 justify-between items-center py-5">
+        <View className="w-52 h-52 items-center">
+          <Image
+            source={require("../assets/images/logo_circular_negro.png")}
+            className="w-full h-full bg-contain"
+          />
+          <Text className="text-2xl">NOMBRE USUARIO</Text>
+        </View>
+
+        <View className="gap-y-5">
+          <Link asChild href="/home">
+            <Pressable>
+              <Text className="text-2xl">CALENDARIO</Text>
+            </Pressable>
+          </Link>
+          <Link asChild href="/home">
+            <Pressable>
+              <Text className="text-2xl">LLAVES</Text>
+            </Pressable>
+          </Link>
+          <Link asChild href="/inventory">
+            <Pressable>
+              <Text className="text-2xl">INVENTARIOS</Text>
+            </Pressable>
+          </Link>
+          <Link asChild href="/home">
+            <Pressable>
+              <Text className="text-2xl">CONFIGURACIÓN</Text>
+            </Pressable>
+          </Link>
+        </View>
+
+        <Pressable onPress={createTwoButtonAlert}>
+          <Text className="text-2xl">CERRAR SESIÓN</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 16,
-  },
-  navigationContainer: {
-    backgroundColor: "#ecf0f1",
-  },
-  paragraph: {
-    padding: 16,
-    fontSize: 15,
-    textAlign: "center",
-  },
-});
