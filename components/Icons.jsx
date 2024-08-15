@@ -15,3 +15,27 @@ export const SingInIcon = (props) => (
 export const OpenMenuIcon = (props) => (
   <AntDesign name="menufold" size={28} color="rgb(33, 25, 21)" {...props} />
 );
+
+export const DownArrowIcon = (props) => (
+  <AntDesign name="arrowdown" size={24} color="black" {...props} />
+);
+
+export const UpArrowIcon = (props) => (
+  <AntDesign name="arrowup" size={24} color="black" {...props} />
+);
+
+export const CheckGreenIcon = (props) => (
+  <AntDesign name="checkcircle" size={24} color="green" {...props} />
+);
+
+export const CheckRedIcon = (props) => (
+  <AntDesign name="minuscircle" size={24} color="red" {...props} />
+);
+
+export const CameraIcon = (props) => (
+  <AntDesign name="camera" size={24} color="black" />
+);
+
+export const VideoIcon = (props) => (
+  <AntDesign name="videocamera" size={24} color="black" />
+);
