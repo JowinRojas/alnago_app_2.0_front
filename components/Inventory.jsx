@@ -1,12 +1,8 @@
 import { Pressable, Text, TextInput, View } from "react-native";
 import { CameraIcon, CheckGreenIcon, CheckRedIcon, DownArrowIcon, VideoIcon } from "./Icons";
+import { styled } from "nativewind";
 
 export default function Inventory() {
-  toggleVisibility = () => {
-    this.setState({
-      isVisible: !this.state.isVisible,
-    });
-  };
 
   return (
     <View className="w-full h-auto justify-center items-center gap-y-5 pt-5 pb-8">
@@ -21,7 +17,7 @@ export default function Inventory() {
           </Pressable>
         </View>
 
-        <View accessibilityViewIsModal={false} className="py-4 gap-4">
+        <View aria-hidden className="py-4 gap-4">
           <View className="flex-row justify-around">
             <TextInput
               placeholder="Fotos"
@@ -173,8 +169,8 @@ export default function Inventory() {
           </View>
         </View>
       </View>
-
-      <Pressable>
+      
+      <Pressable >
         <View className="w-10/12 h-12 bg-alnago-2 rounded-2xl border-2 justify-center items-center">
           <Text className="text-alnago-1 text-3xl mx-5">
             Finalizar inventario
