@@ -8,16 +8,14 @@ export default function Cam() {
   const {flash, setFlash} = useState(FlashMode.off);
 
   if (!permission) {
-    // Camera permissions are still loading
     return <View />;
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="grant permission" />
+        <Text style={{ textAlign: 'center' }}>Se requiere el uso de la cámara</Text>
+        <Button onPress={requestPermission} title="Permitir" />
       </View>
     );
   }
