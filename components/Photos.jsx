@@ -1,14 +1,14 @@
-import { Text, TextInput, View } from "react-native";
-import Cam from "./Cam";
+import { TextInput, View } from "react-native";
+import { CameraIcon } from "./Icons";
+import { Link } from "expo-router";
 
-export default function Photo() {
+export default function Photos() {
   return (
-    <>
-      <TextInput
-        placeholder="Fotos"
-        className="w-5/6 border-2 rounded-2xl px-2"
-      />
-      <Cam icon={"cam"}  />
-    </>
+    <View className="w-full h-full flex-row justify-around items-center">
+      <View className="w-8/12 h-14 border-2" />
+      <Link href="/cam">
+        <CameraIcon color="rgb(0,0,0) " />
+      </Link>
+    </View>
   );
 }

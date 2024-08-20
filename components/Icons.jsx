@@ -33,9 +33,9 @@ export const CheckRedIcon = (props) => (
 );
 
 export const CameraIcon = (props) => (
-  <AntDesign name="camera" size={24} color="black" />
+  <AntDesign name="camera" size={40} color={props.color} />
 );
 
 export const VideoIcon = (props) => (
-  <AntDesign name="videocamera" size={24} color="black" />
+  <AntDesign name="videocamera" size={40} color="black" />
 );

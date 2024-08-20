@@ -10,7 +10,10 @@ export default function InventoryHome() {
           headerTitle: "Inventarios",
         }}
       />
-      <ScrollView showsVerticalScrollIndicator={false} className="w-full h-full">
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        className="w-full h-full"
+      >
         <Inventory />
       </ScrollView>
     </View>
