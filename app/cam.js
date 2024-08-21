@@ -4,15 +4,13 @@ import { Stack } from "expo-router";
 
 export default function CamHome() {
   return (
-    <View>
+    <View className="w-full h-5/6 justify-center items-center">
       <Stack.Screen
         options={{
           headerShown: true,
         }}
       />
-      <Text>
-        <Cam />;
-      </Text>
+      <Cam />
     </View>
   );
 }
