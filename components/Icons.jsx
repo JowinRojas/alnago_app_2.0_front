@@ -1,4 +1,6 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
+import Entypo from '@expo/vector-icons/Entypo';
+
 import { Image } from "react-native";
 
 export const LogoTecho = (props) => (
@@ -37,9 +39,13 @@ export const CameraIcon = (props) => (
 );
 
 export const VideoIcon = (props) => (
-  <AntDesign name="videocamera" size={40} color="black" />
+  <AntDesign name="videocamera" size={40} color={props.color} />
 );
 
 export const ChangeCamIcon = (props) => (
   <AntDesign name="retweet" size={40} color={props.color} />
+);
+
+export const FlashIcon = (props) => (
+  <Entypo name="flash" size={40} color={props.color} />
 );

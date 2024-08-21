@@ -4,12 +4,8 @@ import { Stack } from "expo-router";
 
 export default function CamHome() {
   return (
-    <View className="w-full h-5/6 justify-center items-center">
-      <Stack.Screen
-        options={{
-          headerShown: true,
-        }}
-      />
+    <View className="w-full h-full">
+      <Stack.Screen options={{ headerTitle: "Cámara" }} />
       <Cam />
     </View>
   );
