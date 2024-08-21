@@ -1,19 +1,13 @@
 import { Camera, CameraType, FlashMode } from "expo-camera/legacy";
 import { useState } from "react";
-import {
-  Button,
-  Pressable,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Button, Pressable, StyleSheet, Text, View } from "react-native";
 import { ChangeCamIcon } from "./Icons";
+import { CameraView } from "expo-camera";
 
 export default function Cam() {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
-  const [ flash, setFlash ] = useState(FlashMode.off);
+  const [flash, setFlash] = useState(FlashMode.off);
 
   if (!permission) {
     return <View />;
@@ -21,10 +15,8 @@ export default function Cam() {
 
   if (!permission.granted) {
     return (
-      <View style={styles.container}>
-        <Text style={{ textAlign: "center" }}>
-          Se requiere el uso de la cámara
-        </Text>
+      <View>
+        <Text>Se requiere el uso de la cámara</Text>
         <Button onPress={requestPermission} title="Permitir" />
       </View>
     );
@@ -37,46 +29,22 @@ export default function Cam() {
   }
 
   function toggleFlash() {
-    setType((current) =>
-      current === FlashMode.off? FlashMode.on : FlashMode.off
+    setFlash((current) =>
+      current === FlashMode.off ? FlashMode.on : FlashMode.off
     );
+  }
+
+  function message() {
+    Alert.alert("Aviso", "Estás activando el flash");
   }
 
   return (
     <View className="flex-1 w-full h-full border-2 border-red-600">
-      <Camera style={styles.camera} type={type} >
-        </Camera>
-        <View>
-          <Pressable onPress={toggleFlash}>
-            <ChangeCamIcon />
-          </Pressable>
-        </View>
+      <CameraView className="flex-1" type={type}>
+        <Pressable onPress={toggleCameraType}>
+          <ChangeCamIcon />
+        </Pressable>
+      </CameraView>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "transparent",
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-  },
-});

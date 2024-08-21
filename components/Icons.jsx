@@ -41,5 +41,5 @@ export const VideoIcon = (props) => (
 );
 
 export const ChangeCamIcon = (props) => (
-  <AntDesign name="retweet" size={24} color={props.color} />
+  <AntDesign name="retweet" size={40} color={props.color} />
 );
