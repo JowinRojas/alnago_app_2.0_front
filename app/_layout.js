@@ -3,12 +3,16 @@ import { Link, Stack } from "expo-router";
 import { DrawerLayoutAndroid, Pressable, View } from "react-native";
 import { LogoTecho, OpenMenuIcon } from "../components/Icons";
 import Rutas from "../components/Menu";
+import { Provider } from 'react-redux';
+import {store} from '../redux/store';
+
 
 export default function Layout() {
   const drawer = useRef(null);
   const navigationView = () => <Rutas />;
 
   return (
+    <Provider store={store}>
     <View className="flex-1">
       <DrawerLayoutAndroid
         ref={drawer}
@@ -39,5 +43,6 @@ export default function Layout() {
         />
       </DrawerLayoutAndroid>
     </View>
+    </Provider>
   );
 }

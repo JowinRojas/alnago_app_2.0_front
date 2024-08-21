@@ -3,9 +3,9 @@ import { mandarAlgo } from "./imagenesSlice";
 export const mandarSomething = (payload) => async (dispatch) => {
     
     try {
-        const algo = await fetch("http://localhost:4000/prueba");
-
-        dispatch(mandarAlgo(algo))
+        await fetch("http://192.168.1.197:4000/prueba")
+        .then( response => response.json())
+        .then( post => dispatch(mandarAlgo(post)))
 
     } catch (error) {
         console.log(error)
