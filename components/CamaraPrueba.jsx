@@ -1,68 +1,50 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Text, View, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import React, { useRef, useState } from 'react';
+import { Text, View , Pressable, Image} from 'react-native';
+import { CameraView } from 'expo-camera';
+import * as ImagePicker from "expo-image-picker";
+
 
 const CamaraPrueba = () => {
+  
+  const [ arroz, setArroz ] = useState('')
 
-    const navigation = useNavigation();
-    const [hasPermission, setHasPermission] = useState(null);
-    //const [type, setType] = useState(Camera.Constants.Type.back);
-    const cameraRef = useRef(null);
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
-
-  const takePicture = async () => {
-    if (cameraRef.current) {
-      let photo = await cameraRef.current.takePictureAsync();
-      console.log(photo);
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", `El acceso a la galería es requerido`);
+    } else {
+      const result = await ImagePicker.launchCameraAsync();
+      console.log(result)
+      setArroz(result)
     }
-  };
-
-
-  const toggleCameraType = () => {
-    setType(
-      type === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
-    );
-  };
-
-
-  if (hasPermission === null) {
-    return <View />;
   }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
+
+
 
   return (
-    <View style={{ flex: 1 }}>
-      <Camera style={{ flex: 1 }} ref={cameraRef}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: 'transparent',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-          }}>
+    <View className='w-screen h-screen flex-col items-center justify-center gap-10'>
+      
+      <Pressable className='bg-black' onPress={pickImage}>  
+        <Text className='text-2xl text-white p-10'>
+          Alo
+        </Text>   
+      </Pressable>
 
-          <Pressable onPress={takePicture}>
-            <Text >Take Picture</Text>
-          </Pressable>
-
-          <Pressable onPress={toggleCameraType}>
-            <Text >Flip Camera</Text>
-          </Pressable>
-
+      <View className="w-80 h-80 rounded-md bg-gray-200 items-center justify-center overflow-hidden">
+                {arroz ? (
+                <Image
+                    source={{ uri: arroz.assets[0].uri }}
+                    className="w-full h-full object-cover"
+                  />
+                ) 
+                : (
+                  <Text> aca va el arroz </Text>
+                )}
         </View>
-      </Camera>
+
     </View>
-  );
-};
+  )
+}
 
 export default CamaraPrueba;
