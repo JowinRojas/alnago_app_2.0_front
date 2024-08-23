@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
-import Inventory from "../components/Inventory";
+import Inventory from "../components/inventory/Inventory";
 
 export default function InventoryHome() {
   return (

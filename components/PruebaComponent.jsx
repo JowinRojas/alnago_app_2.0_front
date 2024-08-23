@@ -4,12 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { mandarSomething } from "../redux/slices/imagenes/imagenesFetch";
 import React, { useState, useEffect } from 'react';
 import { View, Button, Image } from 'react-native';
-import { CameraView } from 'expo-camera';
+import { useCameraPermissions } from 'expo-camera';
+
 import { Camera } from 'expo-camera/legacy'
 
 export default function PruebaComponent() {
 
-  //const algo = useSelector( state => state.imagenes.imagen);
+  const algo = useSelector( state => state.imagenes.imagen);
   const dispatch = useDispatch();
 
   const mandar = ()=>{
@@ -77,6 +78,8 @@ export default function PruebaComponent() {
       <Pressable onPress={mandar} className="flex-col gap-10 justify-between items-center bg-alnago-2 rounded-md px-4">
               <Text className="text-alnago-1 text-2xl p-1">Mandar Algo</Text>
       </Pressable>
+
+      <Text>{algo}</Text>
     </View>
   );
 }
