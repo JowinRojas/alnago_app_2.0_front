@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Link, Stack } from "expo-router";
 import { DrawerLayoutAndroid, Pressable, View } from "react-native";
-import { LogoTecho, OpenMenuIcon } from "../components/Icons";
+import { LogoTecho, OpenMenuIcon } from "../components/inventory/Icons";
 import Rutas from "../components/Menu";
 import { Provider } from 'react-redux';
 import {store} from '../redux/store';

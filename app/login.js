@@ -1,6 +1,6 @@
 import { Link, Stack } from "expo-router";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
-import { SingInIcon } from "../components/Icons";
+import { SingInIcon } from "../components/inventory/Icons";
 
 export default function Login() {
   return (

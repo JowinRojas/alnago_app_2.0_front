@@ -9,11 +9,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { CameraIcon, ChangeCamIcon, FlashIcon, VideoIcon } from "./Icons";
+import { CameraIcon, ChangeCamIcon, FlashIcon, VideoIcon } from "./inventory/Icons";
 import { CameraView } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 
 export default function Cam() {
+
   const [type, setType] = useState(CameraType.back);
   const [hasCameraPermission, setHasCameraPermission] =
     Camera.useCameraPermissions();
