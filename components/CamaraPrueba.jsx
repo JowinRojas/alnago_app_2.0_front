@@ -1,48 +1,90 @@
-import React, { useRef, useState } from 'react';
-import { Text, View , Pressable, Image} from 'react-native';
-import { CameraView } from 'expo-camera';
+import React, { useState } from 'react';
+import { Text, View , Pressable, Image, ScrollView} from 'react-native';
 import * as ImagePicker from "expo-image-picker";
-
+import { URLbase } from '../config';
 
 const CamaraPrueba = () => {
   
-  const [ arroz, setArroz ] = useState('')
-
+  const [ file, setFile ] = useState('');
+  
   const pickImage = async () => {
+
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
 
     if (status !== "granted") {
+
       Alert.alert("Permission Denied", `El acceso a la galería es requerido`);
+
     } else {
+
       const result = await ImagePicker.launchCameraAsync();
-      console.log(result)
-      setArroz(result)
+      setFile(result)
+
     }
   }
+
+  //---------Mandar Al Back---------
+
+    const sendImage = async (ev) => {
+        ev.preventDefault();
+        const data = new FormData;
+        
+        data.append('file', {
+          uri: file.assets[0].uri,
+          name: 'photo.jpg',
+          type: 'image/jpeg',
+        });
+        data.append('arroz', 'aca va el contenido del arroz')
+
+        const response = await fetch(`${URLbase}/google/image`,{
+            method: 'POST',
+            body: data,
+            credentials: 'include',
+            // headers: {
+            //   'Content-Type': 'multipart/form-data',
+            // },
+            }    
+        )
+        
+
+    }
+  
 
 
 
   return (
-    <View className='w-screen h-screen flex-col items-center justify-center gap-10'>
+    <View className='w-screen h-full flex flex-col gap-10'>
       
-      <Pressable className='bg-black' onPress={pickImage}>  
-        <Text className='text-2xl text-white p-10'>
-          Alo
-        </Text>   
-      </Pressable>
+                {file ? (
+                  <View className="flex flex-col w-80 gap-10 h-rounded-md bg-gray-200 items-center justify-center">
 
-      <View className="w-80 h-80 rounded-md bg-gray-200 items-center justify-center overflow-hidden">
-                {arroz ? (
-                <Image
-                    source={{ uri: arroz.assets[0].uri }}
-                    className="w-full h-full object-cover"
-                  />
+                    
+                      <Image source={{ uri: file.assets[0].uri }}
+                          className="w-60 h-60 object-cover"/>
+
+                      <Pressable className='bg-black' onPress={pickImage}>  
+                        <Text className='text-2xl text-white p-2'>
+                          Cargar Otra
+                        </Text>   
+                      </Pressable>
+
+                    
+                  </View>
+                  
                 ) 
                 : (
-                  <Text> aca va el arroz </Text>
+                  <Pressable className='bg-black' onPress={pickImage}>  
+                    <Text className='text-2xl text-white p-10'>
+                      Carga la imagen
+                    </Text>   
+                  </Pressable>
                 )}
-        </View>
-
+        
+                <Pressable className='bg-black' onPress={sendImage}>  
+                    <Text className='text-xl text-white p-3'>
+                      Enviar imagen
+                    </Text>   
+                </Pressable>
     </View>
   )
 }
