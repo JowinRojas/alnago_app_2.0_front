@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, View , Pressable, Image, ScrollView} from 'react-native';
+import { Text, View , Pressable, Image } from 'react-native';
 import * as ImagePicker from "expo-image-picker";
 import { URLbase } from '../config';
 
@@ -26,7 +26,9 @@ const CamaraPrueba = () => {
   //---------Mandar Al Back---------
 
     const sendImage = async (ev) => {
+
         ev.preventDefault();
+
         const data = new FormData;
         
         data.append('file', {
@@ -34,17 +36,18 @@ const CamaraPrueba = () => {
           name: 'photo.jpg',
           type: 'image/jpeg',
         });
-        data.append('arroz', 'aca va el contenido del arroz')
+        
+        try {
+          const response = await fetch(`${URLbase}/google/image`,{
+              method: 'POST',
+              body: data,
+              }    
+          )
+          console.log(response)
+        } catch(error) {
+          console.log(error)
+        }
 
-        const response = await fetch(`${URLbase}/google/image`,{
-            method: 'POST',
-            body: data,
-            credentials: 'include',
-            // headers: {
-            //   'Content-Type': 'multipart/form-data',
-            // },
-            }    
-        )
         
 
     }
