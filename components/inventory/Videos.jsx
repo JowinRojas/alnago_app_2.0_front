@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { VideoIcon } from "./Icons";
+import { VideoIcon } from "../Icons";
 import { Link } from "expo-router";
 
 export default function Videos() {

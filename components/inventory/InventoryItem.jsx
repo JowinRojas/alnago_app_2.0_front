@@ -2,7 +2,7 @@ import React from 'react'
 import { Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { closeStatus, openStatus } from "../../redux/slices/inputs/inventorySlice";
-import { CheckGreenIcon, DownArrowIcon } from "./Icons";
+import { CheckGreenIcon, DownArrowIcon } from "../Icons";
 import Photo from "./Photos";
 import Videos from "./Videos";
 

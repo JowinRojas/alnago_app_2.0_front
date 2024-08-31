@@ -5,7 +5,7 @@ import { Image } from "react-native";
 
 export const LogoTecho = (props) => (
   <Image
-    source={require("../../assets/images/techo_negro.png")}
+    source={require("../assets/images/techo_negro.png")}
     className="w-12 h-7"
   />
 );

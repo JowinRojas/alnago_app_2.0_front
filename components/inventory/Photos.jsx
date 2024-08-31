@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { CameraIcon } from "./Icons";
+import { CameraIcon } from "../Icons";
 import { Link } from "expo-router";
 
 export default function Photos() {
