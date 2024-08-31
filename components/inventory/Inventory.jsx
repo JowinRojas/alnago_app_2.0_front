@@ -12,7 +12,7 @@ export default function Inventory() {
       
 
         {inventory?.map( item => (<InventoryItem 
-                                          key={item.fotos}
+                                          key={item.name}
                                           name={item.name}
                                           status={item.status} 
                                           fotos={item.fotos} 

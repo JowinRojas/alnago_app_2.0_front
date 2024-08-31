@@ -1,21 +1,28 @@
-import React from 'react'
-import { Pressable, Text, View } from "react-native";
+import React, { useEffect, useState } from 'react'
+import { Image, Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { closeStatus, openStatus } from "../../redux/slices/inputs/inventorySlice";
-import { CheckGreenIcon, DownArrowIcon } from "../Icons";
-import Photo from "./Photos";
 import Videos from "./Videos";
+import Photos from './Photos';
 
 const InventoryItem = ({name, status, fotos, video}) => {
 
+    const [ photo , setPhoto ] = useState([])
+    
     const dispatch = useDispatch();
-  
+    
     const abrir = ()=>{
       dispatch(openStatus(name))
     }
     const cerrar = ()=>{
       dispatch(closeStatus(name))
     }
+    
+    useEffect(()=>{
+      let fotosh = []
+      if(fotos) fotosh.push(fotos)
+      setPhoto(fotosh)
+    },[fotos])
 
 
   return (
@@ -28,12 +35,28 @@ const InventoryItem = ({name, status, fotos, video}) => {
         {status ? 
                   <View className="h-28 flex flex-col items-center">
                     <Text className="2xl font-bold">Esta Open</Text>
+                    <Photos name={name}/>
                   </View> 
                 : 
                   <View className="h-5 flex flex-col items-center">
                       <Text className="2xl font-bold">Esta Close</Text>
                   </View> 
+
         }
+                
+        {/* {arr
+          ? arr.map( uri => <Image source={{ uri: uri }} key={uri}/>) 
+          : console.log("arroz")
+        } */}
+
+        {photo
+          ? console.log(photo + " arr") 
+          : console.log("arroz")
+        }
+
+        
+
+
         
         <View className="flex flex-row w-full justify-between">
 
