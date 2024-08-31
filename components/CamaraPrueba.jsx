@@ -5,55 +5,6 @@ import { URLbase } from '../config';
 
 const CamaraPrueba = () => {
   
-  const [ file, setFile ] = useState('');
-  
-  const pickImage = async () => {
-
-    const { status } = await ImagePicker.requestCameraPermissionsAsync();
-
-    if (status !== "granted") {
-
-      Alert.alert("Permission Denied", `El acceso a la galería es requerido`);
-
-    } else {
-
-      const result = await ImagePicker.launchCameraAsync();
-      setFile(result)
-
-    }
-  }
-
-  //---------Mandar Al Back---------
-
-    const sendImage = async (ev) => {
-
-        ev.preventDefault();
-
-        const data = new FormData;
-        
-        data.append('file', {
-          uri: file.assets[0].uri,
-          name: 'photo.jpg',
-          type: 'image/jpeg',
-        });
-        
-        try {
-          const response = await fetch(`${URLbase}/google/image`,{
-              method: 'POST',
-              body: data,
-              }    
-          )
-          console.log(response)
-        } catch(error) {
-          console.log(error)
-        }
-
-        
-
-    }
-  
-
-
 
   return (
     <View className='w-screen h-full flex flex-col gap-10'>

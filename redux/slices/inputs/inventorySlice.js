@@ -2,34 +2,22 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = [
   { 
-    name: "puertaPrincipal",
+    name: "Puerta Principal",
     status: true,
-    fotos: ["1"],
-    video:  ["1"],
+    fotos: [],
+    video:  [],
   },
   { 
-    name: "cocina",
+    name: "Cocina",
     status: false,
-    fotos: ["2"],
-    video:  ["2"],
+    fotos: [],
+    video:  [],
   },
   { 
-    name: "sala",
+    name: "Sala",
     status: true,
-    fotos: ["3"],
-    video:  ["3"],
-  },
-  { 
-    name: "ejemplo",
-    status: true,
-    fotos: ["4"],
-    video:  ["4"],
-  },
-  { 
-    name: "ejemplo2",
-    status: true,
-    fotos: ["6"],
-    video:  ["6"],
+    fotos: [],
+    video:  [],
   }]
 
 export const inventorySlice = createSlice({
@@ -38,13 +26,27 @@ export const inventorySlice = createSlice({
   reducers: {
 
     //----------
-    openStatus: (state, payload) => {
+    openStatus: (state, props) => {
         
-        state.map( item => item.name === payload.payload ? item.status = true : true )
+        state.map( item => item.name === props.payload ? item.status = true : true )
     },
     closeStatus: (state, payload)=>{
 
       state.map( item => item.name === payload.payload? item.status = false : false )
+    },
+    addPhoto: (state, payload)=>{
+
+      state.map(( item )=>{
+        if(item.name == payload.payload.name){
+          item.fotos.push(payload.payload.result) 
+        }
+      })
+
+      // state.map( item => item.name == payload.payload.name  
+      //     ? console.log("no agrego")
+      //     : item.fotos.push(payload.payload.result) 
+      //     )  
+      
     },
     
   },
@@ -52,7 +54,8 @@ export const inventorySlice = createSlice({
 
 export const { 
   openStatus,
-  closeStatus
+  closeStatus,
+  addPhoto,
  } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
