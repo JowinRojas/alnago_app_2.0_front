@@ -20,6 +20,8 @@ const initialState = [
     video:  [],
   }]
 
+
+
 export const inventorySlice = createSlice({
   name: 'inventory',
   initialState,
@@ -36,16 +38,13 @@ export const inventorySlice = createSlice({
     },
     addPhoto: (state, payload)=>{
 
+      
       state.map(( item )=>{
-        if(item.name == payload.payload.name){
+        console.log(item)
+        if(item.name === payload.payload.name){
           item.fotos.push(payload.payload.result) 
         }
-      })
-
-      // state.map( item => item.name == payload.payload.name  
-      //     ? console.log("no agrego")
-      //     : item.fotos.push(payload.payload.result) 
-      //     )  
+      }) 
       
     },
     

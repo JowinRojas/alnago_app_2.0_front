@@ -10,7 +10,6 @@ import { addPhoto } from "../../redux/slices/inputs/inventorySlice";
 
 export default function Photos({name}) {
 
-
   const [ file, setFile ] = useState('');
   
   const dispatch = useDispatch();
@@ -26,14 +25,13 @@ export default function Photos({name}) {
     }
   }
 
- 
 
   return (
     <View className="w-full flex-row justify-around items-center">
 
       {file ? (
-                  <View className="flex flex-row h-rounded-md gap-5 items-center justify-center">
-                      <Image source={{ uri: file.assets[0].uri }} className="w-20 h-20 object-cover rounded-3xl"/>        
+                  <View className="flex flex-row h-rounded-md gap-5 items-center justify-center">                              
+                                      
                       <Pressable className='bg-alnago-1 p-2 rounded-2xl' onPress={pickImage}>  
                         <CameraIcon color="rgb(0,0,0)" />  
                       </Pressable>

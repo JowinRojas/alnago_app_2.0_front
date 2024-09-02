@@ -33,9 +33,9 @@ export default function Rutas() {
             </Pressable>
           </Link>
           <Link asChild href="/inventory">
-            <Pressable>
+            
               <Text className="text-2xl">INVENTARIOS</Text>
-            </Pressable>
+            
           </Link>
           <Link asChild href="/prueba">
             <Pressable>
