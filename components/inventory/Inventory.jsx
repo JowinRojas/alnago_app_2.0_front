@@ -6,7 +6,7 @@ import InventoryItem from "./InventoryItem.jsx";
 export default function Inventory() {
 
   const inventory = useSelector( state => state.inventory);
- 
+
   return (
     <View className="w-full h-auto justify-center items-center gap-y-5 pt-8 pb-8">
       
