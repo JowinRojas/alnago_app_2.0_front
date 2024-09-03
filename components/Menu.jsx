@@ -42,6 +42,11 @@ export default function Rutas() {
               <Text className="text-2xl">CONFIGURACIÓN</Text>
             </Pressable>
           </Link>
+          <Link asChild href="/users_form">
+            <Pressable>
+              <Text className="text-2xl">USUARIOS</Text>
+            </Pressable>
+          </Link>
         </View>
 
         <Pressable onPress={createTwoButtonAlert}>
