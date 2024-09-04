@@ -9,15 +9,12 @@ export const loginSlice = createSlice({
   name: 'loginStatus',
   initialState,
   reducers: {
-    login: (state, action) => {
+    login: (state) => {
       state.status = "login";
-      console.log("status cambiado a login")
     },
-    logout: (state, action) => {
+    logout: (state) => {
         state.status = "offline";
     },
-
-    
   },
 });
 
