@@ -1,19 +1,29 @@
 import { Link, Stack } from "expo-router";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import { SingInIcon } from "../components/Icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginFetch } from "../redux/slices/login/loginFetch";
+import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
 
+    const navigation = useNavigation();
+
     const status = useSelector(state => state.loginStatus.status)
-    console.log(status)
+    
     const dispatch = useDispatch()
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState('');
 
+    useEffect(()=>{
+      if(status == 'login'){
+        navigation.navigate('home')
+      }
+    }, [status])
+    
     const loginForm = () => {
+      
       const data = {
         username, 
         password
@@ -21,6 +31,7 @@ export default function Login() {
       dispatch(loginFetch(data))
     }
 
+      
   return (
     <View className="flex-1 bg-alnago-1 justify-center items-center">
       <Stack.Screen
@@ -40,12 +51,12 @@ export default function Login() {
             placeholder="Usuario"
             value={username}
             name='username'
-            onChangeText={text  => setUsername(text)}
+            onChangeText={ text  => setUsername(text)}
           />
           <TextInput
             name='password' 
             value={password} 
-            onChangeText={text  => setPassword(text)}
+            onChangeText={ text  => setPassword(text)}
             secureTextEntry
             className="w-10/12 h-10 border-2 rounded-xl text-alnago-2 text-2xl px-2 py-1"
             placeholder="Contraseña"

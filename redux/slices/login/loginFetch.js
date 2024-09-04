@@ -3,7 +3,7 @@ import { URLbase } from "../../../config";
 
 
 export const loginFetch = (payload) => async (dispatch) => {
-    console.log(payload)
+    
     try {
         const response = await fetch(`${URLbase}/user/login`, {
             method: 'POST',            
