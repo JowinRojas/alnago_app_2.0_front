@@ -30,13 +30,13 @@ export default function Layout() {
               fontSize: 23,
             },
             headerLeft: () => (
-              <Link href="/home" className="w-12 h-9">
+              <Link href="" className="w-12 h-9">
                 <LogoTecho />
               </Link>
             ),
             headerRight: () => (
               <Pressable onPress={() => drawer.current.openDrawer()}>
-                <OpenMenuIcon />
+                {/* <OpenMenuIcon /> */}
               </Pressable>
             ),
           }}

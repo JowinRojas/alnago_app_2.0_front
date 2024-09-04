@@ -1,60 +1,45 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { closeStatus, openStatus } from "../../redux/slices/inputs/inventorySlice";
+import {
+  closeStatus,
+  openStatus,
+} from "../../redux/slices/inputs/inventorySlice";
 import Videos from "./Videos";
-import Photos from './Photos';
+import Photos from "./Photos";
 
-const InventoryItem = ({name, status, fotos, video}) => {
-    
-    const dispatch = useDispatch();
-    
-    const abrir = ()=>{
-      dispatch(openStatus(name))
-    }
-    const cerrar = ()=>{
-      dispatch(closeStatus(name))
-    }
-
-
+const InventoryItem = ({ name, status, fotos, video }) => {
+  const dispatch = useDispatch();
+  const abrir_cerrar = () => {
+    status ? ( dispatch(closeStatus(name)) ) : (dispatch(openStatus(name)));
+  }
 
   return (
-    <View className="w-11/12 flex flex-col h-auto border rounded-3xl p-2 mt-2 justify-center ">
-        
-        <View className="bg-alnago-1 flex justify-center w-full px-2 mb-2 rounded-3xl">
+    <View className="w-11/12 h-auto border rounded-3xl p-2 mt-2">
+      <Pressable onPress={abrir_cerrar}>
+        <View className="w-full bg-alnago-1 px-2 rounded-3xl">
           <Text className="text-2xl font-bold text-black">{name}</Text>
         </View>
+      </Pressable>
 
-        {status ? 
-                  <View className="h-28 flex flex-row items-center">
+      {status ? (
+        <View className="max-w-full h-auto flex-wrap flex-row justify-center">
+          {fotos?.map((item) => (
+            <Image
+              source={{ uri: item }}
+              key={item}
+              className="w-20 h-20 object-cover rounded-3xl m-1"
+            />
+          ))}
 
-                    {fotos?.map( item=> <Image source={{ uri: item }} key={item} className="w-20 h-20 object-cover rounded-3xl"/>)}
-
-                    <Photos name={name}/>
-                  </View> 
-                : 
-                  <View className="h-5 flex flex-col items-center">
-                      <Text className="2xl font-bold">Esta Close</Text>
-                  </View> 
-
-        }
-                
-
-    
-        <View className="flex flex-row w-full justify-between">
-
-            <Pressable onPress={abrir} className="bg-slate-900 rounded-lg p-2">
-            <Text className="font-bold text-green-700">ABRIR</Text>
-            </Pressable>
-
-          <Pressable onPress={cerrar} className="bg-slate-900 rounded-lg p-2">
-            <Text className="font-bold text-red-600">CERRAR</Text>
-          </Pressable>
-
+          <Photos name={name} />
         </View>
-        
+      ) : (
+        <></>
+      )}
+
     </View>
-  )
-}
+  );
+};
 
 export default InventoryItem;

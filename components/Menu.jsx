@@ -22,36 +22,34 @@ export default function Rutas() {
         </View>
 
         <View className="gap-y-5">
-          <Link asChild href="/home">
+          {/* <Link asChild href="/home">
             <Pressable>
               <Text className="text-2xl">CALENDARIO</Text>
             </Pressable>
-          </Link>
-          <Link asChild href="/home">
+          </Link> */}
+          {/* <Link asChild href="/home">
             <Pressable>
               <Text className="text-2xl">LLAVES</Text>
             </Pressable>
-          </Link>
+          </Link> */}
           <Link asChild href="/inventory">
-            
-              <Text className="text-2xl">INVENTARIOS</Text>
-            
+            <Text className="text-2xl">INVENTARIOS</Text>
           </Link>
-          <Link asChild href="/prueba">
+          {/* <Link asChild href="/prueba">
             <Pressable>
               <Text className="text-2xl">CONFIGURACIÓN</Text>
             </Pressable>
-          </Link>
-          <Link asChild href="/users_form">
+          </Link> */}
+          {/* <Link asChild href="/users_form">
             <Pressable>
               <Text className="text-2xl">USUARIOS</Text>
             </Pressable>
-          </Link>
+          </Link> */}
         </View>
 
-        <Pressable onPress={createTwoButtonAlert}>
+        {/* <Pressable onPress={createTwoButtonAlert}>
           <Text className="text-2xl">CERRAR SESIÓN</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
     </View>
   );

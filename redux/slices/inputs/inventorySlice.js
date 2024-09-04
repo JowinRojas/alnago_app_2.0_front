@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = [
   { 
     name: "Puerta Principal",
-    status: true,
+    status: false,
     fotos: [],
     video:  [],
   },
@@ -15,7 +15,7 @@ const initialState = [
   },
   { 
     name: "Sala",
-    status: true,
+    status: false,
     fotos: [],
     video:  [],
   }]
