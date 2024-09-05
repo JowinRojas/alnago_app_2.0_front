@@ -9,7 +9,7 @@ import Videos from "./Videos";
 import Photos from "./Photos";
 import { DownArrowIcon, UpArrowIcon } from "../Icons";
 
-const InventoryItem = ({ name, status, fotos, video }) => {
+const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();
   const abrir_cerrar = () => {
     status ? dispatch(closeStatus(name)) : dispatch(openStatus(name));
@@ -44,6 +44,7 @@ const InventoryItem = ({ name, status, fotos, video }) => {
             multiline
             numberOfLines={4}
             maxLength={500}
+            value={detalles}
           />
         </View>
       ) : (

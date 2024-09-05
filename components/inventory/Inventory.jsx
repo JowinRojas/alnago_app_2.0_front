@@ -13,7 +13,8 @@ export default function Inventory() {
           name={item.name}
           status={item.status}
           fotos={item.fotos}
-          video={item.video}
+          videos={item.videos}
+          detalles={item.detalles}
         />
       ))}
 
