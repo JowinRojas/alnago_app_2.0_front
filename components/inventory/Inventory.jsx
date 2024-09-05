@@ -17,8 +17,8 @@ export default function Inventory() {
         />
       ))}
 
-      <Pressable>
-        <View className="w-10/12 h-12 bg-alnago-2 rounded-2xl border-2 justify-center items-center">
+      <Pressable disabled={true}>
+        <View className="w-10/12 h-12 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center">
           <Text className="text-alnago-1 text-3xl mx-5">
             Finalizar inventario
           </Text>

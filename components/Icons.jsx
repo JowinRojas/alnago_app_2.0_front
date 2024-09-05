@@ -11,7 +11,7 @@ export const LogoTecho = (props) => (
 );
 
 export const SingInIcon = (props) => (
-  <AntDesign name="login" size={22} color="rgb(241,209,43)" {...props} />
+  <AntDesign name="login" size={24} color="rgb(241,209,43)" {...props} />
 );
 
 export const OpenMenuIcon = (props) => (

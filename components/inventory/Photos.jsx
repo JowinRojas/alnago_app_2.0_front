@@ -23,7 +23,7 @@ export default function Photos({ name }) {
   };
 
   return (
-    <Pressable className="w-16 h-16 bg-alnago-1 p-1 rounded-3xl justify-center items-center m-1" onPress={pickImage}>
+    <Pressable className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3" onPress={pickImage}>
       <CameraIcon color="rgb(0,0,0)" />
     </Pressable>
   );
