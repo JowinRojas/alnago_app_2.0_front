@@ -1,14 +1,30 @@
-import { View } from "react-native";
-import { VideoIcon } from "../Icons";
-import { Link } from "expo-router";
+import { View, Pressable, Image } from "react-native";
+import { CameraIcon, VideoIcon } from "../Icons";
+import * as ImagePicker from "expo-image-picker";
+import { URLbase } from "../../config";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addPhoto, addVideo } from "../../redux/slices/inputs/inventorySlice";
 
-export default function Videos() {
+export default function Videos({ name }) {
+  const [file, setFile] = useState("");
+
+  const dispatch = useDispatch();
+
+  const pickImage = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Permission Denied", `El acceso a la galería es requerido`);
+    } else {
+      const result = await ImagePicker.launchCameraAsync();
+      setFile(result);
+      dispatch(addVideo({ name, result: result.assets[0].uri }));
+    }
+  };
+
   return (
-    <View className="w-full flex-row justify-around items-center">
-      <View className="w-8/12 h-14 border-2" />
-      <Link href="/cam">
-        <VideoIcon color="rgb(0,0,0) " />
-      </Link>
-    </View>
+    <Pressable className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3" onPress={pickImage}>
+      <VideoIcon color="rgb(0,0,0)" />
+    </Pressable>
   );
 }

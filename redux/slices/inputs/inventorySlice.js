@@ -5,49 +5,49 @@ const initialState = [
     name: "Puerta Principal",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Cocina",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Habitaciones", 
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Pasillo",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Sala/Comedor",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Baño",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   },
   {
     name: "Pisos/Techos/Conexiones",
     status: false,
     fotos: [],
-    video: [],
+    videos: [],
     detalles: [],
   }
 ];
@@ -69,15 +69,23 @@ export const inventorySlice = createSlice({
     },
     addPhoto: (state, payload) => {
       state.map((item) => {
-        console.log(item);
+        // console.log(item);
         if (item.name === payload.payload.name) {
           item.fotos.push(payload.payload.result);
+        }
+      });
+    },
+    addVideo: (state, payload) => {
+      state.map((item) => {
+        // console.log(item);
+        if (item.name === payload.payload.name) {
+          item.videos.push(payload.payload.result);
         }
       });
     },
   },
 });
 
-export const { openStatus, closeStatus, addPhoto } = inventorySlice.actions;
+export const { openStatus, closeStatus, addPhoto, addVideo } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

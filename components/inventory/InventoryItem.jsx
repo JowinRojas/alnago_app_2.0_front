@@ -22,21 +22,36 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
           <View className="p-1">
             {status ? <UpArrowIcon /> : <DownArrowIcon />}
           </View>
-          <Text className="w-full max-w-full text-2xl font-bold text-black">{name}</Text>
+          <Text className="w-full max-w-full text-2xl font-bold text-black">
+            {name}
+          </Text>
         </View>
       </Pressable>
 
       {status ? (
-        <View className="max-w-full h-auto flex-wrap flex-row justify-center ">
-          {fotos?.map((item) => (
-            <Image
-              source={{ uri: item }}
-              key={item}
-              className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
-            />
-          ))}
+        <View className="w-full">
+          <View className="flex-row flex-wrap items-center justify-center">
+            {fotos?.map((item) => (
+              <Image
+                source={{ uri: item }}
+                key={item}
+                className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
+              />
+            ))}
+            <Photos name={name} />
+          </View>
 
-          <Photos name={name} />
+          <View className="flex-row flex-wrap items-center justify-center">
+            {videos?.map((item) => (
+              <Image
+                source={{ uri: item }}
+                key={item}
+                className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
+              />
+            ))}
+            <Videos name={name} />
+          </View>
+
           <TextInput
             className="w-full m-2 border-2 rounded-2xl px-2 text-2xl"
             placeholder="Detalles"
