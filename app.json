@@ -1,33 +1,41 @@
 {
   "expo": {
     "name": "alnago_app_2.0_front",
-    "slug": "alnago_app_2.0_front",
+    "slug": "Alnago_2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/logo_circular_negro.png",
     "userInterfaceStyle": "light",
     "scheme": "alnago2",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/images/logo_circular_negro.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/logo_circular_negro.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.diabolickman.alnago_app_2"
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/images/logo_circular_negro.png",
       "bundler": "metro"
     },
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "05d9aff3-22ea-4679-813e-669a688006ea"
+      }
+    }
   }
 }
