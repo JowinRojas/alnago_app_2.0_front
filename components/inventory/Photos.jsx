@@ -1,13 +1,11 @@
-import { View, Pressable, Image } from "react-native";
+import { Pressable } from "react-native";
 import { CameraIcon } from "../Icons";
 import * as ImagePicker from "expo-image-picker";
-import { URLbase } from "../../config";
-import { useState } from "react";
+
 import { useDispatch } from "react-redux";
 import { addPhoto } from "../../redux/slices/inputs/inventorySlice";
 
 export default function Photos({ name }) {
-  const [file, setFile] = useState("");
 
   const dispatch = useDispatch();
 
@@ -17,7 +15,6 @@ export default function Photos({ name }) {
       Alert.alert("Permission Denied", `El acceso a la galería es requerido`);
     } else {
       const result = await ImagePicker.launchCameraAsync();
-      setFile(result);
       dispatch(addPhoto({ name, result: result.assets[0].uri }));
     }
   };

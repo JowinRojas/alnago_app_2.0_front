@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { sendInv } from "./inventoryFetch";
 
 const initialState = [
   {
@@ -69,7 +70,7 @@ export const inventorySlice = createSlice({
     },
     addPhoto: (state, payload) => {
       state.map((item) => {
-        // console.log(item);
+        
         if (item.name === payload.payload.name) {
           item.fotos.push(payload.payload.result);
         }
@@ -77,15 +78,27 @@ export const inventorySlice = createSlice({
     },
     addVideo: (state, payload) => {
       state.map((item) => {
-        // console.log(item);
+        
         if (item.name === payload.payload.name) {
           item.videos.push(payload.payload.result);
         }
       });
     },
+    sendInventory: (state) => {
+
+      let todasLasFotos = [];
+
+      state.map(item => item.fotos.map( img => todasLasFotos.push(img)))
+
+      if(todasLasFotos) {
+        
+        sendInv(todasLasFotos)
+        state = initialState;
+      }
+    },
   },
 });
 
-export const { openStatus, closeStatus, addPhoto, addVideo } = inventorySlice.actions;
+export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
