@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "alnago_app_2.0_front",
+    "name": "Alnago 2",
     "slug": "Alnago_2",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -27,7 +27,8 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-video"
     ],
     "extra": {
       "router": {

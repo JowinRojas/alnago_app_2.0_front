@@ -51,7 +51,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
           </View>
 
           <TextInput
-            className="w-full m-2 border-2 rounded-2xl px-2 text-2xl"
+            className="w-full border-2 rounded-2xl px-2 text-2xl"
             placeholder="Detalles"
             editable
             multiline

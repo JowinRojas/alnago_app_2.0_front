@@ -1,10 +1,10 @@
-import { View, Pressable, Image } from "react-native";
-import { CameraIcon, VideoIcon } from "../Icons";
+import { View, Pressable } from "react-native";
+import { VideoIcon } from "../Icons";
 import * as ImagePicker from "expo-image-picker";
-import { URLbase } from "../../config";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addPhoto, addVideo } from "../../redux/slices/inputs/inventorySlice";
+import { addVideo } from "../../redux/slices/inputs/inventorySlice";
+import { Link } from "expo-router";
 
 export default function Videos({ name }) {
   const [file, setFile] = useState("");
@@ -23,8 +23,10 @@ export default function Videos({ name }) {
   };
 
   return (
-    <Pressable className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3" onPress={pickImage}>
-      <VideoIcon color="rgb(0,0,0)" />
-    </Pressable>
+    <Link asChild href={"/video"}>
+      <Pressable className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3">
+        <VideoIcon color="rgb(0,0,0)" />
+      </Pressable>
+    </Link>
   );
 }
