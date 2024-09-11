@@ -14,3 +14,28 @@ export const mandarSomething = (payload) => async (dispatch) => {
         console.log(error)
     }
   };
+
+  //---------Mandar Al Back---------
+  const sendImage = async (ev) => {
+    ev.preventDefault();
+    const data = new FormData;
+
+    data.append('file', {
+      uri: file.assets[0].uri,
+      name: 'photo.jpg',
+      type: 'image/jpeg',
+    });
+    data.append('arroz', 'aca va el contenido del arroz')
+
+    const response = await fetch(`${URLbase}/google/image`,{
+        method: 'POST',
+        body: data,
+        credentials: 'include',
+        // headers: {
+        //   'Content-Type': 'multipart/form-data',
+        // },
+        }    
+    )
+
+
+}
