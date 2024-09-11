@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import InventoryItem from "./InventoryItem.jsx";
 import { sendInventory } from "../../redux/slices/inputs/inventorySlice.js";
@@ -13,6 +13,9 @@ export default function Inventory() {
 
   return (
     <View className="w-full h-auto justify-center items-center gap-y-5 pt-8 pb-8">
+
+      <TextInput className="w-11/12 h-16 border-2 rounded-3xl px-3 py-1 my-4 text-2xl" placeholder="Dirección" />
+
       {inventory?.map((item) => (
         <InventoryItem
           key={item.name}
@@ -25,8 +28,8 @@ export default function Inventory() {
       ))}
 
       <Pressable onPress={sendFotos}>
-        <View className="w-10/12 h-12 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center">
-          <Text className="text-alnago-1 text-3xl mx-5">
+        <View className="w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center">
+          <Text className="w-full text-alnago-1 text-3xl mx-5">
             Finalizar inventario
           </Text>
         </View>

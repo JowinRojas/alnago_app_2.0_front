@@ -14,9 +14,9 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   
 
   return (
-    <View className="w-11/12 h-auto border rounded-3xl p-2 mt-2">
+    <View className="w-11/12 h-auto border rounded-3xl p-2 my-2">
       <Pressable onPress={abrir_cerrar}>
-        <View className="w-full flex-row bg-alnago-1 px-2 rounded-3xl">
+        <View className="w-full h-12 flex-row bg-alnago-1 px-2 rounded-2xl items-center">
           <View className="p-1">
             {status ? <UpArrowIcon /> : <DownArrowIcon />}
           </View>
@@ -39,7 +39,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Photos name={name} />
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
+          {/* <View className="flex-row flex-wrap items-center justify-center">
             {videos?.map((item) => (
               <Image
                 source={{ uri: item }}
@@ -48,7 +48,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
               />
             ))}
             <Videos name={name} />
-          </View>
+          </View> */}
 
           <TextInput
             className="w-full border-2 rounded-2xl px-2 text-2xl"
