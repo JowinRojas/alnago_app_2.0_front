@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { complete, sendInv } from "./inventoryFetch";
+import { sendInv } from "./inventoryFetch";
 
 const initialState = {
   complete: false,
@@ -9,49 +9,49 @@ const initialState = {
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Cocina",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Habitaciones",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Pasillo",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Sala/Comedor",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Baño",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
     {
       name: "Pisos/Techos/Conexiones",
       status: false,
       fotos: [],
       videos: [],
-      detalles: [],
+      detalles: '',
     },
   ],
 };
@@ -96,19 +96,38 @@ export const inventorySlice = createSlice({
     },
 
     sendInventory: (state) => {
+
       let todasLasFotos = [];
+      let comentarios = '';
+
       state.inventario.map((item) =>
-        item.fotos.map((img) => todasLasFotos.push(img))
+        item.fotos?.map((img) => todasLasFotos.push(img))
       );
-      if (todasLasFotos) {
-        sendInv(todasLasFotos);
-        state = initialState;
-      }
+      
+      state.inventario.forEach( item => {
+        comentarios += item.detalles + '@%' 
+      })
+      
+      sendInv({fotos:todasLasFotos, comentarios});
+      
     },
+
+    addComment: (state, payload)=>{
+
+      state.inventario.map((item) => {
+        if (item.name === payload.payload.name) {
+          item.detalles = payload.payload.detalles;
+        }
+      });
+    },
+
+
+
   },
 });
 
-export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } =
-  inventorySlice.actions;
+
+
+export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

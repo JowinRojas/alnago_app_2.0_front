@@ -6,6 +6,7 @@ import { useState } from "react";
 import { complete } from "../../redux/slices/inputs/inventoryFetch.js";
 
 export default function Inventory() {
+  
   const inventory = useSelector((state) => state.inventory.inventario);
   const completo = useSelector((state) => state.inventory.complete);
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ export default function Inventory() {
           detalles={item.detalles}
         />
       ))}
+
 
       <Pressable onPress={completo ? sendFotos : validacion}>
         <View className={ completo ? "w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center" : "w-11/12 h-14 bg-stone-500 rounded-2xl border-2 border-red-400 justify-center items-center"}>
