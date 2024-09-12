@@ -1,8 +1,9 @@
-import { Image, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
 import {
   closeStatus,
   openStatus,
+  deletePhoto,
 } from "../../redux/slices/inputs/inventorySlice";
 import Videos from "./Videos";
 import Photos from "./Photos";
@@ -19,6 +20,12 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
     status ? dispatch(closeStatus(name)) : dispatch(openStatus(name));
   };
 
+  const deletefoto = (file) => {
+    const zona = name;
+    // console.log("deletefoto: ", zona);
+    dispatch(deletePhoto({file,zona}));
+  };
+
   return (
     <View className="w-11/12 h-auto border rounded-3xl p-2 my-2">
       <Pressable onPress={abrir_cerrar}>
@@ -26,9 +33,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
           <View className="p-1">
             {status ? <UpArrowIcon /> : <DownArrowIcon />}
           </View>
-          <Text className="text-2xl font-bold text-black">
-            {name}
-          </Text>
+          <Text className="text-2xl font-bold text-black">{name}</Text>
           <View>{fotos != "" ? <CheckGreenIcon /> : <CheckRedIcon />}</View>
         </View>
       </Pressable>
@@ -37,11 +42,17 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
         <View className="w-full">
           <View className="flex-row flex-wrap items-center justify-center">
             {fotos?.map((item) => (
-              <Image
-                source={{ uri: item }}
+              <Pressable
                 key={item}
-                className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
-              />
+                onPress={() => {
+                  deletefoto(item);
+                }}
+              >
+                <Image
+                  source={{ uri: item }}
+                  className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
+                />
+              </Pressable>
             ))}
             <Photos name={name} />
           </View>

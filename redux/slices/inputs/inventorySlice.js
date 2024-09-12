@@ -87,6 +87,15 @@ export const inventorySlice = createSlice({
       });
     },
 
+    deletePhoto: (state,payload) => {
+      // console.log("deletePhoto: ",payload.payload.file);
+      // console.log("deletePhoto: ",payload.payload.zona);
+
+      // const lazona =  state.inventario.payload.payload.zona;
+
+      // console.log("objeto: ",lazona )
+    },
+
     addVideo: (state, payload) => {
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
@@ -95,7 +104,7 @@ export const inventorySlice = createSlice({
       });
     },
 
-    sendInventory: (state) => {
+    sendInventory: () => {
       let todasLasFotos = [];
       state.inventario.map((item) =>
         item.fotos.map((img) => todasLasFotos.push(img))
@@ -108,7 +117,7 @@ export const inventorySlice = createSlice({
   },
 });
 
-export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } =
+export const { openStatus, closeStatus, addPhoto, addVideo, deletePhoto, sendInventory } =
   inventorySlice.actions;
 
 export default inventorySlice.reducer;
