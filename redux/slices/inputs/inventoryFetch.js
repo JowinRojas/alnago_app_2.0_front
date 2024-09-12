@@ -26,3 +26,12 @@ export const sendInv = async ( fotos ) => {
     }
 
 }
+
+export function complete(fotos) {
+  console.log (fotos);
+  const complete = false;
+    fotos?.map((item) => {
+      item.fotos!= "" ? complete=true : complete = false;
+    });
+    return complete;
+}

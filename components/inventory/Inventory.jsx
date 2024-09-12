@@ -1,20 +1,31 @@
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import InventoryItem from "./InventoryItem.jsx";
-import { sendInventory } from "../../redux/slices/inputs/inventorySlice.js";
+import { sendInventory, btnEnviar } from "../../redux/slices/inputs/inventorySlice.js";
+import { useState } from "react";
+import { complete } from "../../redux/slices/inputs/inventoryFetch.js";
 
 export default function Inventory() {
-  const inventory = useSelector((state) => state.inventory);
-
-  const dispatch = useDispatch()
+  const inventory = useSelector((state) => state.inventory.inventario);
+  const completo = useSelector((state) => state.inventory.complete);
+  console.log(completo);
+  
+  const dispatch = useDispatch();
+  
   const sendFotos = () => {
     dispatch(sendInventory());
-  }
+  };
+  
+  const validacion = () => {
+    dispatch(btnEnviar());
+  };
 
   return (
     <View className="w-full h-auto justify-center items-center gap-y-5 pt-8 pb-8">
-
-      <TextInput className="w-11/12 h-16 border-2 rounded-3xl px-3 py-1 my-4 text-2xl" placeholder="Dirección" />
+      <TextInput
+        className="w-11/12 h-16 border-2 rounded-3xl px-3 py-1 my-4 text-2xl"
+        placeholder="Dirección"
+      />
 
       {inventory?.map((item) => (
         <InventoryItem
@@ -27,9 +38,10 @@ export default function Inventory() {
         />
       ))}
 
-      <Pressable onPress={sendFotos}>
+      <Pressable onPress={validacion}>
         <View className="w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center">
-          <Text className="w-full text-alnago-1 text-3xl mx-5">
+          <Text
+            className="w-full text-alnago-1 text-3xl mx-5" >
             Finalizar inventario
           </Text>
         </View>

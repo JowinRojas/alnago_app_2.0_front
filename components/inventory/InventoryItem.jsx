@@ -1,28 +1,35 @@
-
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { closeStatus, openStatus } from "../../redux/slices/inputs/inventorySlice";
+import {
+  closeStatus,
+  openStatus,
+} from "../../redux/slices/inputs/inventorySlice";
 import Videos from "./Videos";
 import Photos from "./Photos";
-import { DownArrowIcon, UpArrowIcon } from "../Icons";
+import {
+  CheckGreenIcon,
+  CheckRedIcon,
+  DownArrowIcon,
+  UpArrowIcon,
+} from "../Icons";
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();
   const abrir_cerrar = () => {
     status ? dispatch(closeStatus(name)) : dispatch(openStatus(name));
   };
-  
 
   return (
     <View className="w-11/12 h-auto border rounded-3xl p-2 my-2">
       <Pressable onPress={abrir_cerrar}>
-        <View className="w-full h-12 flex-row bg-alnago-1 px-2 rounded-2xl items-center">
+        <View className="w-full h-12 flex-row bg-alnago-1 px-2 rounded-2xl items-center justify-between">
           <View className="p-1">
             {status ? <UpArrowIcon /> : <DownArrowIcon />}
           </View>
-          <Text className="w-full max-w-full text-2xl font-bold text-black">
+          <Text className="text-2xl font-bold text-black">
             {name}
           </Text>
+          <View>{fotos != "" ? <CheckGreenIcon /> : <CheckRedIcon />}</View>
         </View>
       </Pressable>
 
