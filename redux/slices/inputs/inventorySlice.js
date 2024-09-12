@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { sendInv } from "./inventoryFetch";
 
 const initialState = {
-  complete: true,
+  complete: false,
   inventario: [
     {
       name: "Puerta Principal",
@@ -74,10 +74,16 @@ export const inventorySlice = createSlice({
     },
 
     addPhoto: (state, payload) => {
+      state.complete = true;
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
           item.fotos.push(payload.payload.result);
         }
+      });
+      state.inventario.map((item) => {
+        item.fotos != ""
+          ? (state.complete = state.complete && true)
+          : (state.complete = false);
       });
     },
 
@@ -87,19 +93,6 @@ export const inventorySlice = createSlice({
           item.videos.push(payload.payload.result);
         }
       });
-    },
-
-    btnEnviar: (state, payload) => {
-      let todasLasFotos = [];
-      let completefotos = false;
-      state.inventario.map((item) =>
-        item.fotos.map((img) => todasLasFotos.push(img))
-      );
-      todasLasFotos?.map((item) => {
-        
-        item ? state.complete = state.complete && true : state.complete = false;
-      });
-     
     },
 
     sendInventory: (state) => {
@@ -133,14 +126,8 @@ export const inventorySlice = createSlice({
   },
 });
 
-export const {
-  openStatus,
-  closeStatus,
-  addPhoto,
-  addVideo,
-  sendInventory,
-  btnEnviar,
-  addComment,
-} = inventorySlice.actions;
+
+
+export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } = inventorySlice.actions;
 
 export default inventorySlice.reducer;

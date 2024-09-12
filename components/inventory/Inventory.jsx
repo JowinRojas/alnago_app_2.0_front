@@ -9,16 +9,15 @@ export default function Inventory() {
   
   const inventory = useSelector((state) => state.inventory.inventario);
   const completo = useSelector((state) => state.inventory.complete);
-  
-  
   const dispatch = useDispatch();
   
   const sendFotos = () => {
-    dispatch(sendInventory());
+    Alert.alert("se envio")
+    // dispatch(sendInventory());
   };
   
   const validacion = () => {
-    dispatch(btnEnviar());
+    Alert.alert("Debe competar todas las zonas para poder enviar el inventario");
   };
 
   return (
@@ -39,10 +38,11 @@ export default function Inventory() {
         />
       ))}
 
-      <Pressable onPress={sendFotos}>
-        <View className="w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center">
+
+      <Pressable onPress={completo ? sendFotos : validacion}>
+        <View className={ completo ? "w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center" : "w-11/12 h-14 bg-stone-500 rounded-2xl border-2 border-red-400 justify-center items-center"}>
           <Text
-            className="w-full text-alnago-1 text-3xl mx-5" >
+            className={completo ? "w-full text-alnago-1 text-3xl mx-5" : "w-full text-red-400 text-3xl mx-5" } >
             Finalizar inventario
           </Text>
         </View>
