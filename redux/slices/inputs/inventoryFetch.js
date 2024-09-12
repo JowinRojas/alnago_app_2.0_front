@@ -1,13 +1,11 @@
 import { URLbase } from "../../../config";
 
-export const sendInv = async ( fotos ) => {
+export const sendInv = async ( {fotos, comentarios} ) => {
+    
     
     const data = new FormData();
-    // Añadir cada foto al FormData
-    // for (let i = 0; i < fotos.length; i++) {
-    //   data.append('fotos', fotos[i]);
-    // }
     fotos.map( foto => data.append('fotos', {uri:foto, name:'photito.jpg', type:'image/jpeg'}))
+    data.append('comentarios', comentarios)
 
     try {
       const response = await fetch(`${URLbase}/google/images`,{
