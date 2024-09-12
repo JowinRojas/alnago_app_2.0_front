@@ -103,13 +103,9 @@ export const inventorySlice = createSlice({
         }
       });
     },
-
-<<<<<<< HEAD
-    sendInventory: () => {
-=======
+    
     sendInventory: (state) => {
 
->>>>>>> e9dc418891c88b886bc2cf17a7c7e2c8d9fd4e41
       let todasLasFotos = [];
       let comentarios = '';
 
@@ -139,13 +135,7 @@ export const inventorySlice = createSlice({
   },
 });
 
-<<<<<<< HEAD
 export const { openStatus, closeStatus, addPhoto, addVideo, deletePhoto, sendInventory } =
   inventorySlice.actions;
-=======
-
-
-export const { openStatus, closeStatus, addPhoto, addVideo, sendInventory } = inventorySlice.actions;
->>>>>>> e9dc418891c88b886bc2cf17a7c7e2c8d9fd4e41
 
 export default inventorySlice.reducer;
