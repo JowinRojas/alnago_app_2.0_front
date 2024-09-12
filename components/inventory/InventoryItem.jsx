@@ -13,8 +13,11 @@ import {
   DownArrowIcon,
   UpArrowIcon,
 } from "../Icons";
+import { Comment } from "./Comment";
+
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
+  
   const dispatch = useDispatch();
   const abrir_cerrar = () => {
     status ? dispatch(closeStatus(name)) : dispatch(openStatus(name));
@@ -68,16 +71,11 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Videos name={name} />
           </View> */}
 
-          <TextInput
-            className="w-full border-2 rounded-2xl px-2 text-2xl"
-            placeholder="Detalles"
-            editable
-            multiline
-            numberOfLines={4}
-            maxLength={500}
-            value={detalles}
-          />
+          <Text>{detalles}</Text>
+          <Comment name={name}/>
+
         </View>
+
       ) : (
         <></>
       )}
