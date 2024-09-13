@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Pressable, Text, TextInput, View } from 'react-native';
-import { UpArrowIcon } from "../Icons";
 import { useDispatch } from "react-redux";
 import { addComment } from '../../redux/slices/inputs/inventorySlice';
 
@@ -27,7 +26,10 @@ export const Comment = ({name}) => {
                 maxLength={500}
                 value={detalles}
               />
-            <Pressable  className="bg-black rounded-3xl h-10 mt-5 w-full flex justify-center items-center" onPress={comentar}>
+            <Pressable  
+              className="bg-black rounded-3xl h-10 mt-5 w-full flex justify-center items-center" 
+              onPress={comentar}>
+
                 <Text className='text-white'>Cargar Comentarios</Text>
             </Pressable>
 

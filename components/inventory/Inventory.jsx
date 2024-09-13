@@ -1,9 +1,10 @@
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import InventoryItem from "./InventoryItem.jsx";
-import { sendInventory, btnEnviar } from "../../redux/slices/inputs/inventorySlice.js";
-import { useState } from "react";
-import { complete } from "../../redux/slices/inputs/inventoryFetch.js";
+import { sendInventory } from "../../redux/slices/inputs/inventorySlice.js";
+
+
+
 
 export default function Inventory() {
   
@@ -12,8 +13,7 @@ export default function Inventory() {
   const dispatch = useDispatch();
   
   const sendFotos = () => {
-    Alert.alert("se envio")
-    // dispatch(sendInventory());
+     dispatch(sendInventory());
   };
   
   const validacion = () => {
@@ -47,6 +47,7 @@ export default function Inventory() {
           </Text>
         </View>
       </Pressable>
+      <Pressable onPress={sendFotos}><Text>Arroz</Text></Pressable>
     </View>
   );
 }

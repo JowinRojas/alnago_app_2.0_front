@@ -71,7 +71,12 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Videos name={name} />
           </View> */}
 
-          <Text>{detalles}</Text>
+          <View className='w-full flex items-center justify-center'>
+            <Text className='text-xl'>Comentarios</Text>
+            <Text className='text-base'>{detalles}</Text>
+
+          </View>
+
           <Comment name={name}/>
 
         </View>

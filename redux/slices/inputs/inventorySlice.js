@@ -104,6 +104,8 @@ export const inventorySlice = createSlice({
       });
     },
     
+
+    //-----------------
     sendInventory: (state) => {
 
       let todasLasFotos = [];
@@ -114,15 +116,16 @@ export const inventorySlice = createSlice({
       );
       
       state.inventario.forEach( item => {
-        comentarios += item.detalles + '@%' 
+        comentarios += item.name + ': ' + item.detalles + '@%' 
       })
       
       sendInv({fotos:todasLasFotos, comentarios});
       
     },
 
-    addComment: (state, payload)=>{
 
+    //-------------
+    addComment: (state, payload)=>{
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
           item.detalles = payload.payload.detalles;
@@ -135,7 +138,7 @@ export const inventorySlice = createSlice({
   },
 });
 
-export const { openStatus, closeStatus, addPhoto, addVideo, deletePhoto, sendInventory } =
+export const { openStatus, closeStatus, addPhoto, addVideo, deletePhoto, sendInventory, addComment} =
   inventorySlice.actions;
 
 export default inventorySlice.reducer;
