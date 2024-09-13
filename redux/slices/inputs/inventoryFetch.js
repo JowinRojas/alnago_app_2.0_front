@@ -2,7 +2,6 @@ import { URLbase } from "../../../config";
 
 export const sendInv = async ( {fotos, comentarios} ) => {
     
-    
     const data = new FormData();
     fotos.map( foto => data.append('fotos', {uri:foto, name:'photito.jpg', type:'image/jpeg'}))
     data.append('comentarios', comentarios)
