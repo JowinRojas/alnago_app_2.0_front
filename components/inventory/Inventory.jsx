@@ -2,6 +2,7 @@ import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import InventoryItem from "./InventoryItem.jsx";
 import { sendInventory } from "../../redux/slices/inputs/inventorySlice.js";
+import { useState } from "react";
 
 
 
@@ -10,10 +11,11 @@ export default function Inventory() {
   
   const inventory = useSelector((state) => state.inventory.inventario);
   const completo = useSelector((state) => state.inventory.complete);
+  const [direccion, setDireccion ] = useState('')
   const dispatch = useDispatch();
   
   const sendFotos = () => {
-     dispatch(sendInventory());
+     dispatch(sendInventory({direccion}));
   };
   
   const validacion = () => {
@@ -25,6 +27,8 @@ export default function Inventory() {
       <TextInput
         className="w-11/12 h-16 border-2 rounded-3xl px-3 py-1 my-4 text-2xl"
         placeholder="Dirección"
+        onChangeText={setDireccion}
+        value={direccion}
       />
 
       {inventory?.map((item) => (
@@ -47,7 +51,7 @@ export default function Inventory() {
           </Text>
         </View>
       </Pressable>
-      <Pressable onPress={sendFotos}><Text>Arroz</Text></Pressable>
+      
     </View>
   );
 }
