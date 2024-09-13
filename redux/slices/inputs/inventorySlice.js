@@ -3,6 +3,7 @@ import { sendInv } from "./inventoryFetch";
 
 const initialState = {
   complete: false,
+  direccion: '',
   inventario: [
     {
       name: "Puerta Principal",
@@ -106,10 +107,12 @@ export const inventorySlice = createSlice({
     
 
     //-----------------
-    sendInventory: (state) => {
+    sendInventory: (state, payload) => {
 
+      console.log(payload)
       let todasLasFotos = [];
       let comentarios = '';
+      let direccionInventario = payload.payload.direccion
 
       state.inventario.map((item) =>
         item.fotos?.map((img) => todasLasFotos.push(img))
@@ -119,7 +122,11 @@ export const inventorySlice = createSlice({
         comentarios += item.name + ': ' + item.detalles + '@%' 
       })
       
-      sendInv({fotos:todasLasFotos, comentarios});
+      sendInv({
+        fotos:todasLasFotos, 
+        comentarios, 
+        direccionInventario
+      });
       
     },
 
