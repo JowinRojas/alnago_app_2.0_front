@@ -109,17 +109,16 @@ export const inventorySlice = createSlice({
     //-----------------
     sendInventory: (state, payload) => {
 
-      console.log(payload)
       let todasLasFotos = [];
       let comentarios = '';
-      let direccionInventario = payload.payload.direccion
+      let direccionInventario = payload.payload.direccion;
 
       state.inventario.map((item) =>
         item.fotos?.map((img) => todasLasFotos.push(img))
       );
       
       state.inventario.forEach( item => {
-        comentarios += item.name + ': ' + item.detalles + '@%' 
+        comentarios += `<b>${item.name}</b>` + ': ' + item.detalles + '@%' 
       })
       
       sendInv({
