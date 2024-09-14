@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { sendInv } from "./inventoryFetch";
+import { Alert } from "react-native";
 
 const initialState = {
   complete: false,
@@ -89,10 +90,14 @@ export const inventorySlice = createSlice({
     },
 
     deletePhoto: (state, payload) => {
-      const lazona = payload.payload.zona;
       const urlPhoto = payload.payload.file;
-      // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
-      console.log("objeto: ", state.inventario);
+      state.inventario.forEach(item => {
+        let pos = item.fotos.indexOf(urlPhoto);
+        if(pos !== -1) {
+          item.fotos.splice(pos, 1);
+          Alert.alert("La foto fue eliminada");
+        }
+      });
     },
 
     addVideo: (state, payload) => {

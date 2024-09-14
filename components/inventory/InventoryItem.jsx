@@ -1,11 +1,10 @@
-import { Alert, Image, Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Image, Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import {
   closeStatus,
   openStatus,
   deletePhoto,
 } from "../../redux/slices/inputs/inventorySlice";
-import Videos from "./Videos";
 import Photos from "./Photos";
 import {
   CheckGreenIcon,
@@ -24,9 +23,12 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   };
 
   const deletefoto = (file) => {
-    const zona = name;
-    // console.log("deletefoto: ", zona);
-    dispatch(deletePhoto({file,zona}));
+    Alert.alert('Eliminar', '¿Eliminar la foto?',[
+      {text: 'Si', onPress: () => dispatch(deletePhoto({file}))},
+      {text: 'No',  style: 'cancel' },
+     ]
+    )
+    
   };
 
   return (
