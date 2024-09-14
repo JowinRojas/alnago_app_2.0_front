@@ -3,56 +3,56 @@ import { sendInv } from "./inventoryFetch";
 
 const initialState = {
   complete: false,
-  direccion: '',
+  direccion: "",
   inventario: [
     {
       name: "Puerta Principal",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Cocina",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Habitaciones",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Pasillo",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Sala/Comedor",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Baño",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
     {
       name: "Pisos/Techos/Conexiones",
       status: false,
       fotos: [],
       videos: [],
-      detalles: '',
+      detalles: "",
     },
   ],
 };
@@ -88,13 +88,11 @@ export const inventorySlice = createSlice({
       });
     },
 
-    deletePhoto: (state,payload) => {
-      // console.log("deletePhoto: ",payload.payload.file);
-      // console.log("deletePhoto: ",payload.payload.zona);
-
-      // const lazona =  state.inventario.payload.payload.zona;
-
-      // console.log("objeto: ",lazona )
+    deletePhoto: (state, payload) => {
+      const lazona = payload.payload.zona;
+      const urlPhoto = payload.payload.file;
+      // https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
+      console.log("objeto: ", state.inventario);
     },
 
     addVideo: (state, payload) => {
@@ -104,48 +102,48 @@ export const inventorySlice = createSlice({
         }
       });
     },
-    
 
     //-----------------
     sendInventory: (state, payload) => {
-
-      console.log(payload)
+      console.log(payload);
       let todasLasFotos = [];
-      let comentarios = '';
-      let direccionInventario = payload.payload.direccion
+      let comentarios = "";
+      let direccionInventario = payload.payload.direccion;
 
       state.inventario.map((item) =>
         item.fotos?.map((img) => todasLasFotos.push(img))
       );
-      
-      state.inventario.forEach( item => {
-        comentarios += item.name + ': ' + item.detalles + '@%' 
-      })
-      
-      sendInv({
-        fotos:todasLasFotos, 
-        comentarios, 
-        direccionInventario
+
+      state.inventario.forEach((item) => {
+        comentarios += item.name + ": " + item.detalles + "@%";
       });
-      
+
+      sendInv({
+        fotos: todasLasFotos,
+        comentarios,
+        direccionInventario,
+      });
     },
 
-
     //-------------
-    addComment: (state, payload)=>{
+    addComment: (state, payload) => {
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
           item.detalles = payload.payload.detalles;
         }
       });
     },
-
-
-
   },
 });
 
-export const { openStatus, closeStatus, addPhoto, addVideo, deletePhoto, sendInventory, addComment} =
-  inventorySlice.actions;
+export const {
+  openStatus,
+  closeStatus,
+  addPhoto,
+  addVideo,
+  deletePhoto,
+  sendInventory,
+  addComment,
+} = inventorySlice.actions;
 
 export default inventorySlice.reducer;
