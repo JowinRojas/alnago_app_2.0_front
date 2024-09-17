@@ -1,7 +1,7 @@
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import InventoryItem from "./InventoryItem.jsx";
-import { sendInventory } from "../../redux/slices/inputs/inventorySlice.js";
+import { sendInventory, reset } from "../../redux/slices/inputs/inventorySlice.js";
 import { useState } from "react";
 
 
@@ -15,11 +15,19 @@ export default function Inventory() {
   const dispatch = useDispatch();
   
   const sendFotos = () => {
-     dispatch(sendInventory({direccion}));
+     try{
+      dispatch(sendInventory({direccion}));
+     }catch(error){
+       Alert.alert("Error al enviar el inventario", error.message);
+     }finally{
+       dispatch(reset());
+       Alert.alert("Inventario enviado exitosamente");
+       setDireccion('');
+     }
   };
   
   const validacion = () => {
-    Alert.alert("Debe competar todas las zonas para poder enviar el inventario");
+    Alert.alert("Debe ingresar una dirección valida y tomar fotos en cada zona para poder enviar el inventario");
   };
 
   return (
@@ -43,10 +51,10 @@ export default function Inventory() {
       ))}
 
 
-      <Pressable onPress={completo ? sendFotos : validacion}>
-        <View className={ completo ? "w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center" : "w-11/12 h-14 bg-stone-500 rounded-2xl border-2 border-red-400 justify-center items-center"}>
+      <Pressable onPress={ (completo && direccion != "" ) ? sendFotos : validacion}>
+        <View className={ (completo && direccion != "" ) ? "w-11/12 h-14 bg-alnago-2 rounded-2xl border-2 border-alnago-1 justify-center items-center" : "w-11/12 h-14 bg-stone-500 rounded-2xl border-2 border-red-400 justify-center items-center"}>
           <Text
-            className={completo ? "w-full text-alnago-1 text-3xl mx-5" : "w-full text-red-400 text-3xl mx-5" } >
+            className={ (completo && direccion != "" ) ? "w-full text-alnago-1 text-3xl mx-5" : "w-full text-red-400 text-3xl mx-5" } >
             Finalizar inventario
           </Text>
         </View>

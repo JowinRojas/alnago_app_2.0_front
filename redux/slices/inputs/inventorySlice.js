@@ -91,11 +91,14 @@ export const inventorySlice = createSlice({
 
     deletePhoto: (state, payload) => {
       const urlPhoto = payload.payload.file;
-      state.inventario.forEach(item => {
+      state.inventario.forEach((item) => {
         let pos = item.fotos.indexOf(urlPhoto);
-        if(pos !== -1) {
+        if (pos !== -1) {
           item.fotos.splice(pos, 1);
           Alert.alert("La foto fue eliminada");
+        }
+        if (item.fotos.length === 0) {
+          state.complete = false;
         }
       });
     },
@@ -122,11 +125,17 @@ export const inventorySlice = createSlice({
         comentarios += `<b>${item.name}</b>` + ": " + item.detalles + "@%";
       });
 
-      sendInv({
-        fotos: todasLasFotos,
-        comentarios,
-        direccionInventario,
-      });
+      try {
+        sendInv({
+          fotos: todasLasFotos,
+          comentarios,
+          direccionInventario,
+        });
+      } catch (error) {
+        console.log("No se pudo procesar", error);
+      } finally{
+        console.log("Se envio correctamente")
+      }
     },
 
     //-------------
@@ -135,6 +144,17 @@ export const inventorySlice = createSlice({
         if (item.name === payload.payload.name) {
           item.detalles = payload.payload.detalles;
         }
+      });
+    },
+
+    reset: (state, payload) => {
+      state.complete = false;
+      state.direccion = "";
+      state.inventario.map((item) => {
+        item.status = false;
+        item.fotos = [];
+        item.videos = [];
+        item.detalles = "";
       });
     },
   },
@@ -148,6 +168,7 @@ export const {
   deletePhoto,
   sendInventory,
   addComment,
+  reset,
 } = inventorySlice.actions;
 
 export default inventorySlice.reducer;
