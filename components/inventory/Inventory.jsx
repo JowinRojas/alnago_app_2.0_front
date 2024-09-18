@@ -27,7 +27,7 @@ export default function Inventory() {
   };
   
   const validacion = () => {
-    Alert.alert("Debe ingresar una dirección valida y tomar fotos en cada zona para poder enviar el inventario");
+    Alert.alert("Inventario incompleto","Debe ingresar una dirección valida y tomar fotos en cada zona para poder enviar el inventario");
   };
 
   return (
