@@ -125,17 +125,11 @@ export const inventorySlice = createSlice({
         comentarios += `<b>${item.name}</b>` + ": " + item.detalles + "@%";
       });
 
-      try {
-        sendInv({
-          fotos: todasLasFotos,
-          comentarios,
-          direccionInventario,
-        });
-      } catch (error) {
-        console.log("No se pudo procesar", error);
-      } finally{
-        console.log("Se envio correctamente")
-      }
+      sendInv({
+        fotos: todasLasFotos,
+        comentarios,
+        direccionInventario,
+      });
     },
 
     //-------------
