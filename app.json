@@ -20,7 +20,8 @@
         "foregroundImage": "./assets/images/logo_circular_negro.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.diabolickman.alnago_app_2"
+      "package": "com.diabolickman.alnago_app_2",
+      "permissions": ["INTERNET"]
     },
     "web": {
       "favicon": "./assets/images/logo_circular_negro.png",
@@ -37,6 +38,7 @@
       "eas": {
         "projectId": "05d9aff3-22ea-4679-813e-669a688006ea"
       }
-    }
+    },
+    "owner": "devzone"
   }
 }
