@@ -10,12 +10,14 @@ import { useState } from "react";
 export default function Inventory() {
   const inventory = useSelector((state) => state.inventory.inventario);
   const completo = useSelector((state) => state.inventory.complete);
+  
   const [direccion, setDireccion] = useState("");
+  
   const dispatch = useDispatch();
 
   const sendFotos = () => {
     dispatch(sendInventory({ direccion }));
-    Alert.alert("Inventario enviado exitosamente");
+    //  Alert.alert("Inventario enviado exitosamente");
     //  dispatch(reset());
     //  setDireccion('');
   };
@@ -64,7 +66,7 @@ export default function Inventory() {
           >
             Finalizar inventario
           </Text>
-        </View>
+          </View>
       </Pressable>
     </View>
   );
