@@ -8,7 +8,7 @@ export const sendInv = async ({ fotos, comentarios, direccionInventario }) => {
   );
   data.append("comentarios", comentarios);
   data.append("direccion", direccionInventario);
-  console.log("data", data);
+  //console.log("data", data);
 
   try {
     const response = await fetch(`${URLbase}/google/images`, {
@@ -19,7 +19,15 @@ export const sendInv = async ({ fotos, comentarios, direccionInventario }) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    if (response) return;
+    console.log(response.ok)
+
+    if (response.ok) {
+      return "todo bien";
+    } else {
+      return 'todo mal'
+    }
+      
+
   } catch (error) {
     console.log(error);
   }

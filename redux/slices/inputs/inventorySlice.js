@@ -130,6 +130,8 @@ export const inventorySlice = createSlice({
         comentarios,
         direccionInventario,
       });
+
+      
     },
 
     //-------------
