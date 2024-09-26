@@ -1,14 +1,20 @@
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { styled } from "nativewind";
 import { Alert, Image, Pressable, Text, View } from "react-native";
 
-export default function Rutas() {
-  const createTwoButtonAlert = () =>
+const StyledPressable = styled(Pressable);
+
+const Rutas = ({ closeDrawer }) => {
+  const router = useRouter();
+  const cerrarSesion = () => {
     Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
       {
         text: "Cancel",
       },
-      { cancelable: false, text: "OK", onPress: () => (location = "/") },
+      { cancelable: false, text: "Si", onPress: () => router.push("/") },
     ]);
+    closeDrawer();
+  };
 
   return (
     <View className="w-full h-full bg-alnago-1 justify-center items-center">
@@ -21,36 +27,40 @@ export default function Rutas() {
           <Text className="text-2xl">NOMBRE USUARIO</Text>
         </View>
 
-        <View className="gap-y-5">
-          {/* <Link asChild href="/home">
-            <Pressable>
+        <View className="gap-y-5" onPress={closeDrawer}>
+          <Link asChild href="/home" onPress={closeDrawer}>
+            <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">CALENDARIO</Text>
-            </Pressable>
-          </Link> */}
-          {/* <Link asChild href="/home">
-            <Pressable>
-              <Text className="text-2xl">LLAVES</Text>
-            </Pressable>
-          </Link> */}
-          <Link asChild href="/inventory">
-            <Text className="text-2xl">INVENTARIOS</Text>
+            </StyledPressable>
           </Link>
-          {/* <Link asChild href="/prueba">
-            <Pressable>
+          <Link asChild href="/home" onPress={closeDrawer}>
+            <StyledPressable className={"active:scale-90 active:opacity-50"}>
+              <Text className="text-2xl">LLAVES</Text>
+            </StyledPressable>
+          </Link>
+          <Link asChild href="/inventory" onPress={closeDrawer}>
+            <StyledPressable className={"active:scale-90 active:opacity-50"}>
+              <Text className="text-2xl">INVENTARIOS</Text>
+            </StyledPressable>
+          </Link>
+          <Link asChild href="/prueba" onPress={closeDrawer}>
+            <StyledPressable className={"active:scale-95 active:opacity-60"}>
               <Text className="text-2xl">CONFIGURACIÓN</Text>
-            </Pressable>
-          </Link> */}
-          {/* <Link asChild href="/users_form">
-            <Pressable>
+            </StyledPressable>
+          </Link>
+          <Link asChild href="/users_form" onPress={closeDrawer}>
+            <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">USUARIOS</Text>
-            </Pressable>
-          </Link> */}
+            </StyledPressable>
+          </Link>
         </View>
 
-        {/* <Pressable onPress={createTwoButtonAlert}>
-          <Text className="text-2xl">CERRAR SESIÓN</Text>
-        </Pressable> */}
+          <StyledPressable className={"active:scale-90 active:opacity-50"} onPress={cerrarSesion}>
+            <Text className="text-2xl">CERRAR SESIÓN</Text>
+          </StyledPressable>
       </View>
     </View>
   );
-}
+};
+
+export default Rutas;

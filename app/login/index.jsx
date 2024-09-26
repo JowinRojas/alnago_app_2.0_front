@@ -1,10 +1,13 @@
 import { Link, Stack } from "expo-router";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
-import { SingInIcon } from "../components/Icons";
+import { SingInIcon } from "../../components/Icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginFetch } from "../redux/slices/login/loginFetch";
+import { loginFetch } from "../../redux/slices/login/loginFetch";
 import { useNavigation } from '@react-navigation/native';
+import { styled } from "nativewind";
+
+const StyledPressable = styled(Pressable);
 
 export default function Login() {
 
@@ -41,7 +44,7 @@ export default function Login() {
       />
       <View className="w-full h-full justify-center items-center">
         <Image
-          source={require("../assets/images/logotipo_negro.png")}
+          source={require("../../assets/images/logotipo_negro.png")}
           className="w-72 h-52 my-16"
         />
 
@@ -64,10 +67,10 @@ export default function Login() {
         </View>
 
         <Link asChild href="./home" className="m-5">
-          <Pressable className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4">
+          <StyledPressable className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4 active:opacity-75 active:scale-90">
             <Text className="text-alnago-1 text-2xl p-1">Ingresar</Text>
             <SingInIcon />
-          </Pressable>
+          </StyledPressable>
         </Link>
 
         <Pressable onPress={loginForm} className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4">
