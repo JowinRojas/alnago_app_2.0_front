@@ -1,5 +1,6 @@
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Entypo from '@expo/vector-icons/Entypo';
+import Feather from '@expo/vector-icons/Feather';
 
 import { Image } from "react-native";
 
@@ -48,4 +49,12 @@ export const ChangeCamIcon = (props) => (
 
 export const FlashIcon = (props) => (
   <Entypo name="flash" size={40} color={props.color} />
+);
+
+export const TrashIcon = (props) => (
+  <Feather name="trash-2" size={40} color={props.color} />
+);
+
+export const UploadIcon = (props) => (
+  <Entypo name="upload" size={40} color={props.color} />
 );

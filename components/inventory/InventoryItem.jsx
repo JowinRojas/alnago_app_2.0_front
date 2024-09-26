@@ -1,4 +1,4 @@
-import { Alert, Image, Pressable, Text, View } from "react-native";
+import { Alert, Image, Modal, Pressable, Text, View } from "react-native";
 import { useDispatch } from "react-redux";
 import {
   closeStatus,
@@ -10,29 +10,65 @@ import {
   CheckGreenIcon,
   CheckRedIcon,
   DownArrowIcon,
+  TrashIcon,
   UpArrowIcon,
 } from "../Icons";
 import { Comment } from "./Comment";
-
+import { useState } from "react";
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
-  
   const dispatch = useDispatch();
+  const [foto, setFoto] = useState("");
+  const [preview, setPreview] = useState(false);
+
   const abrir_cerrar = () => {
     status ? dispatch(closeStatus(name)) : dispatch(openStatus(name));
   };
 
   const deletefoto = (file) => {
-    Alert.alert('Eliminar', '¿Eliminar la foto?',[
-      {text: 'Si', onPress: () => dispatch(deletePhoto({file}))},
-      {text: 'No',  style: 'cancel' },
-     ]
-    )
-    
+    Alert.alert("Eliminar", "¿Eliminar la foto?", [
+      {
+        text: "Si",
+        onPress: () => {
+          dispatch(deletePhoto({ file }));
+          setPreview(false);
+        },
+      },
+      { text: "No", style: "cancel" },
+    ]);
+  };
+
+  const previewPhoto = (file) => {
+    // console.log("Preview: ", file);
+    setFoto(file);
+    setPreview(true);
   };
 
   return (
     <View className="w-11/12 h-auto border rounded-3xl p-2 my-2">
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={preview}
+        onRequestClose={() => setPreview(false)}
+      >
+        <View className="flex-1 justify-center items-center bg-black/50">
+          <View className="bg-white p-6 rounded-lg w-96">
+            <Image
+              source={{ uri: foto }}
+              className="w-full h-96 mb-4 rounded-lg"
+            />
+            <View className="flex-row justify-around">
+              <Pressable onPress={() => setPreview(false)}>
+                <Text className="text-2xl text-red">Cerrar</Text>
+              </Pressable>
+              <Pressable onPress={() => deletefoto(foto)}>
+                <TrashIcon color="red" />
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <Pressable onPress={abrir_cerrar}>
         <View className="w-full h-12 flex-row bg-alnago-1 px-2 rounded-2xl items-center justify-between">
           <View className="p-1">
@@ -50,7 +86,8 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
               <Pressable
                 key={item}
                 onPress={() => {
-                  deletefoto(item);
+                  // deletefoto(item);
+                  previewPhoto(item);
                 }}
               >
                 <Image
@@ -73,16 +110,13 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Videos name={name} />
           </View> */}
 
-          <View className='w-full flex items-center justify-center'>
-            <Text className='text-xl'>Comentarios</Text>
-            <Text className='text-base'>{detalles}</Text>
-
+          <View className="w-full flex items-center justify-center">
+            <Text className="text-xl">Comentarios</Text>
+            <Text className="text-base">{detalles}</Text>
           </View>
 
-          <Comment name={name}/>
-
+          <Comment name={name} />
         </View>
-
       ) : (
         <></>
       )}
