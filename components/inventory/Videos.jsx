@@ -1,5 +1,5 @@
 import { View, Pressable } from "react-native";
-import { VideoIcon } from "../Icons";
+import { UploadIcon, VideoIcon } from "../Icons";
 import * as ImagePicker from "expo-image-picker";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -7,6 +7,7 @@ import { addVideo } from "../../redux/slices/inputs/inventorySlice";
 import { Link } from "expo-router";
 
 export default function Videos({ name }) {
+  const [videos, setVideos] = useState([]);
   const [file, setFile] = useState("");
 
   const dispatch = useDispatch();
@@ -22,11 +23,27 @@ export default function Videos({ name }) {
     }
   };
 
+  const selectVideos = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Videos,
+      allowsEditing: false,
+      quality: 1,
+      allowsMultipleSelection: true,
+    });
+
+    if (!result.canceled) {
+      setVideos([...setVideos, ...result.assets.map((asset) => asset.uri)]);
+    }
+  };
+
   return (
-    <Link asChild href={"/video"}>
-      <Pressable className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3">
-        <VideoIcon color="rgb(0,0,0)" />
+    <View>
+      <Pressable
+        className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3 active:opacity-80 active:scale-90"
+        onPress={selectVideos}
+      >
+        <VideoIcon />
       </Pressable>
-    </Link>
+    </View>
   );
 }

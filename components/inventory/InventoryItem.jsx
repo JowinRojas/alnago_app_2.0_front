@@ -15,6 +15,7 @@ import {
 } from "../Icons";
 import { Comment } from "./Comment";
 import { useState } from "react";
+import Videos from "./Videos";
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();
@@ -53,19 +54,24 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
         onRequestClose={() => setPreview(false)}
       >
         <View className="flex-1 justify-center items-center bg-black/50">
-          <View className="bg-white p-6 rounded-lg w-96">
+          <View className="w-full max-w-md bg-white p-1 rounded-lg items-center">
             <Image
               source={{ uri: foto }}
-              className="w-full h-96 mb-4 rounded-lg"
+              style={{ aspectRatio: 3 / 4 }}
+              className="w-full rounded-lg"
             />
-            <View className="flex-row justify-around">
-              <Pressable onPress={() => setPreview(false)}>
-                <Text className="text-2xl text-red">Cerrar</Text>
-              </Pressable>
-              <Pressable onPress={() => deletefoto(foto)}>
-                <TrashIcon color="red" />
-              </Pressable>
-            </View>
+            <Pressable
+              className="absolute right-0 mt-2 mr-5"
+              onPress={() => setPreview(false)}
+            >
+              <Text className={`text-gray-100 text-3xl`}>&times;</Text>
+            </Pressable>
+            <Pressable
+              className="absolute bottom-0 m-4 "
+              onPress={() => deletefoto(foto)}
+            >
+              <TrashIcon color="red" />
+            </Pressable>
           </View>
         </View>
       </Modal>
@@ -86,7 +92,6 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
               <Pressable
                 key={item}
                 onPress={() => {
-                  // deletefoto(item);
                   previewPhoto(item);
                 }}
               >
@@ -99,7 +104,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Photos name={name} />
           </View>
 
-          {/* <View className="flex-row flex-wrap items-center justify-center">
+          <View className="flex-row flex-wrap items-center justify-center">
             {videos?.map((item) => (
               <Image
                 source={{ uri: item }}
@@ -108,7 +113,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
               />
             ))}
             <Videos name={name} />
-          </View> */}
+          </View>
 
           <View className="w-full flex items-center justify-center">
             <Text className="text-xl">Comentarios</Text>

@@ -31,7 +31,6 @@ export default function Photos({ name }) {
       allowsMultipleSelection: true,
     });
 
-    // Si el usuario no cancela, agregar la URI de la imagen al estado
     if (!result.canceled) {
       setImages((prevImages) => [...prevImages, result.assets[0].uri]);
     }
@@ -54,7 +53,6 @@ export default function Photos({ name }) {
                 top: 0,
                 right: 10,
                 padding: 10,
-
               }}
             >
               <Text className={`text-gray-600 text-3xl`}>&times;</Text>
