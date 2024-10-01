@@ -32,7 +32,9 @@ export default function Photos({ name }) {
     });
 
     if (!result.canceled) {
-      setImages((prevImages) => [...prevImages, result.assets[0].uri]);
+      result.assets.forEach((element) => {
+        dispatch(addPhoto({ name, result: element.uri }));
+      });
     }
   };
 
@@ -58,19 +60,25 @@ export default function Photos({ name }) {
               <Text className={`text-gray-600 text-3xl`}>&times;</Text>
             </Pressable>
             <View className="flex-row justify-around">
-              <Pressable
-                className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3 active:opacity-80 active:scale-90"
-                onPress={pickImage}
-              >
-                <CameraIcon color="rgb(0,0,0)" />
-              </Pressable>
+              <View className="items-center justify-between">
+                <Pressable
+                  className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3 active:opacity-80 active:scale-90"
+                  onPress={pickImage}
+                >
+                  <CameraIcon color="rgb(0,0,0)" />
+                </Pressable>
+                <Text className="text-lg">Tomar foto</Text>
+              </View>
 
-              <Pressable
-                className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3 active:opacity-80 active:scale-90"
-                onPress={selectImages}
-              >
-                <UploadIcon />
-              </Pressable>
+              <View className="items-center justify-between">
+                <Pressable
+                  className="w-20 h-20 bg-alnago-1 p-1 rounded-3xl justify-center items-center mx-1 my-3 active:opacity-80 active:scale-90"
+                  onPress={selectImages}
+                >
+                  <UploadIcon />
+                </Pressable>
+                <Text className="text-lg">Subir foto</Text>
+              </View>
             </View>
           </View>
         </View>

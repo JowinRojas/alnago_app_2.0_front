@@ -40,7 +40,6 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   };
 
   const previewPhoto = (file) => {
-    // console.log("Preview: ", file);
     setFoto(file);
     setPreview(true);
   };
@@ -104,16 +103,16 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Photos name={name} />
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
-            {videos?.map((item) => (
+          {/* <View className="flex-row flex-wrap items-center justify-center">
+            {videos?.map((item) => {
               <Image
                 source={{ uri: item }}
                 key={item}
                 className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
-              />
-            ))}
+              />;
+            })}
             <Videos name={name} />
-          </View>
+          </View> */}
 
           <View className="w-full flex items-center justify-center">
             <Text className="text-xl">Comentarios</Text>
