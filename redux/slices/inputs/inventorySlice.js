@@ -104,6 +104,7 @@ export const inventorySlice = createSlice({
     },
 
     addVideo: (state, payload) => {
+      console.log("objetos: ", state.inventario," ",payload.payload.name);
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
           item.videos.push(payload.payload.result);

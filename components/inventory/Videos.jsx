@@ -10,7 +10,7 @@ const StyledPressable = styled(Pressable);
 
 export default function Videos({ name }) {
   const [videos, setVideos] = useState([]);
-  const [file, setFile] = useState("");
+  const [video, setVideo] = useState("");
   const [modalShow, setModalShow] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,8 +25,9 @@ export default function Videos({ name }) {
         allowsEditing: true,
         quality: 1,
       });
-      setFile(result);
-      dispatch(addVideo({ name, result: result.uri }));
+      setVideo(result.assets[0].uri);
+      console.log("video: ", video)
+      dispatch(addVideo({ name, result: video }));
     }
   };
 

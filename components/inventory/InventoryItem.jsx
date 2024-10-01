@@ -16,6 +16,7 @@ import {
 import { Comment } from "./Comment";
 import { useState } from "react";
 import Videos from "./Videos";
+import { Video } from "expo-av";
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();
@@ -103,16 +104,14 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Photos name={name} />
           </View>
 
-          {/* <View className="flex-row flex-wrap items-center justify-center">
+          <View className="flex-row flex-wrap items-center justify-center">
             {videos?.map((item) => {
-              <Image
-                source={{ uri: item }}
-                key={item}
+              <View
                 className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
               />;
             })}
             <Videos name={name} />
-          </View> */}
+          </View>
 
           <View className="w-full flex items-center justify-center">
             <Text className="text-xl">Comentarios</Text>
