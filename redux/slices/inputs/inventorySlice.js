@@ -104,10 +104,23 @@ export const inventorySlice = createSlice({
     },
 
     addVideo: (state, payload) => {
-      console.log("objetos: ", state.inventario," ",payload.payload.name);
       state.inventario.map((item) => {
         if (item.name === payload.payload.name) {
           item.videos.push(payload.payload.result);
+        }
+      });
+    },
+
+    deleteVideo: (state, payload) => {
+      const urlVideo = payload.payload.file;
+      state.inventario.forEach((item) => {
+        let pos = item.videos.indexOf(urlVideo);
+        if (pos !== -1) {
+          item.videos.splice(pos, 1);
+          Alert.alert("El video fue eliminado");
+        }
+        if (item.videos.length === 0) {
+          state.complete = false;
         }
       });
     },
@@ -161,6 +174,7 @@ export const {
   addPhoto,
   addVideo,
   deletePhoto,
+  deleteVideo,
   sendInventory,
   addComment,
   reset,

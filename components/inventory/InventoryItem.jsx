@@ -4,6 +4,7 @@ import {
   closeStatus,
   openStatus,
   deletePhoto,
+  deleteVideo,
 } from "../../redux/slices/inputs/inventorySlice";
 import Photos from "./Photos";
 import {
@@ -21,6 +22,7 @@ import { Video } from "expo-av";
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();
   const [foto, setFoto] = useState("");
+  const [video, setVideo] = useState("");
   const [preview, setPreview] = useState(false);
 
   const abrir_cerrar = () => {
@@ -40,10 +42,28 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
     ]);
   };
 
-  const previewPhoto = (file) => {
-    setFoto(file);
+  const deleteVid = (file) => {
+    Alert.alert("Eliminar", "¿Eliminar el video?", [
+      {
+        text: "Si",
+        onPress: () => {
+          dispatch(deleteVideo({ file }));
+          setPreview(false);
+        },
+      },
+      { text: "No", style: "cancel" },
+    ]);
+  };
+
+  const previewItem = (file, tipo) => {
+    if (tipo === "foto"){
+      setFoto(file);
+    }else{
+      setVideo(file);
+    }
     setPreview(true);
   };
+
 
   return (
     <View className="w-11/12 h-auto border rounded-3xl p-2 my-2">
@@ -51,12 +71,12 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
         animationType="fade"
         transparent={true}
         visible={preview}
-        onRequestClose={() => setPreview(false)}
+        onRequestClose={() => {setPreview(false), setFoto(""), setVideo("")}}
       >
         <View className="flex-1 justify-center items-center bg-black/50">
           <View className="w-full max-w-md bg-white p-1 rounded-lg items-center">
             <Image
-              source={{ uri: foto }}
+              source={{ uri: foto? foto : video }}
               style={{ aspectRatio: 3 / 4 }}
               className="w-full rounded-lg"
             />
@@ -68,7 +88,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             </Pressable>
             <Pressable
               className="absolute bottom-0 m-4 "
-              onPress={() => deletefoto(foto)}
+              onPress={() => foto ? deletefoto(foto) : deleteVid(video)}
             >
               <TrashIcon color="red" />
             </Pressable>
@@ -90,9 +110,9 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
           <View className="flex-row flex-wrap items-center justify-center">
             {fotos?.map((item) => (
               <Pressable
-                key={item}
+                key={"foto" + item}
                 onPress={() => {
-                  previewPhoto(item);
+                  previewItem(item, tipo="foto");
                 }}
               >
                 <Image
@@ -105,11 +125,19 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
           </View>
 
           <View className="flex-row flex-wrap items-center justify-center">
-            {videos?.map((item) => {
-              <View
-                className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
-              />;
-            })}
+            {videos?.map((item) => (
+              <Pressable
+                key={"video" + item}
+                onPress={() => {
+                  previewItem(item, tipo="video");
+                }}
+              >
+                <Image
+                  source={{ uri: item }}
+                  className="w-20 h-20 object-cover rounded-3xl mx-1 my-3"
+                />
+              </Pressable>
+            ))}
             <Videos name={name} />
           </View>
 

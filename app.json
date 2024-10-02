@@ -4,7 +4,7 @@
     "slug": "Alnago_2",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/logo_circular_negro.png",
+    "icon": "./assets/images/LogoIconMobile2.jpg",
     "userInterfaceStyle": "light",
     "scheme": "alnago2",
     "splash": {
@@ -17,7 +17,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/logo_circular_negro.png",
+        "foregroundImage": "./assets/images/LogoIconMobile2.jpg",
         "backgroundColor": "#ffffff"
       },
       "package": "com.diabolickman.alnago_app_2",

@@ -25,9 +25,12 @@ export default function Videos({ name }) {
         allowsEditing: true,
         quality: 1,
       });
-      setVideo(result.assets[0].uri);
-      console.log("video: ", video)
-      dispatch(addVideo({ name, result: video }));
+
+      if (!result.canceled) {
+        const videoUri = result.assets[0].uri;
+        setVideo(videoUri);
+        dispatch(addVideo({ name, result: videoUri }));
+      }
     }
   };
 
