@@ -18,8 +18,8 @@ export default function Inventory() {
   const sendFotos = () => {
     dispatch(sendInventory({ direccion }));
     Alert.alert("Inventario enviado exitosamente");
-    dispatch(reset());
-    setDireccion("");
+    // dispatch(reset());
+    // setDireccion("");
   };
 
   const validacion = () => {
