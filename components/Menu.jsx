@@ -28,31 +28,26 @@ const Rutas = ({ closeDrawer }) => {
         </View>
 
         <View className="gap-y-5" onPress={closeDrawer}>
-          <Link asChild href="/home" onPress={closeDrawer}>
+          {/* <Link asChild href="/home" onPress={closeDrawer}>
             <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">CALENDARIO</Text>
             </StyledPressable>
-          </Link>
-          <Link asChild href="/home" onPress={closeDrawer}>
+          </Link> */}
+          {/* <Link asChild href="/home" onPress={closeDrawer}>
             <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">LLAVES</Text>
             </StyledPressable>
-          </Link>
+          </Link> */}
           <Link asChild href="/inventory" onPress={closeDrawer}>
             <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">INVENTARIOS</Text>
             </StyledPressable>
           </Link>
-          <Link asChild href="/prueba" onPress={closeDrawer}>
+          {/* <Link asChild href="/prueba" onPress={closeDrawer}>
             <StyledPressable className={"active:scale-95 active:opacity-60"}>
               <Text className="text-2xl">CONFIGURACIÓN</Text>
             </StyledPressable>
-          </Link>
-          <Link asChild href="/users_form" onPress={closeDrawer}>
-            <StyledPressable className={"active:scale-90 active:opacity-50"}>
-              <Text className="text-2xl">USUARIOS</Text>
-            </StyledPressable>
-          </Link>
+          </Link> */}
         </View>
 
           <StyledPressable className={"active:scale-90 active:opacity-50"} onPress={cerrarSesion}>

@@ -124,7 +124,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
             <Photos name={name} />
           </View>
 
-          <View className="flex-row flex-wrap items-center justify-center">
+          {/* <View className="flex-row flex-wrap items-center justify-center">
             {videos?.map((item) => (
               <Pressable
                 key={"video" + item}
@@ -139,7 +139,7 @@ const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
               </Pressable>
             ))}
             <Videos name={name} />
-          </View>
+          </View> */}
 
           <View className="w-full flex items-center justify-center">
             <Text className="text-xl">Comentarios</Text>

@@ -38,12 +38,16 @@ export default function Layout() {
                 fontSize: 23,
               },
               headerLeft: () => (
-                <Link href="/home" className="w-12 h-9">
+                // <Link href="/home" className="w-12 h-9">
+                <Link href="/inventory">
                   <LogoTecho />
                 </Link>
               ),
               headerRight: () => (
-                <StyledPressable className={"active:opacity-50 active:scale-95"} onPress={() => drawer.current.openDrawer()}>
+                <StyledPressable
+                  className={"active:opacity-50 active:scale-95"}
+                  onPress={() => drawer.current.openDrawer()}
+                >
                   <OpenMenuIcon drawer={drawer} />
                 </StyledPressable>
               ),
