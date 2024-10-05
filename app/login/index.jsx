@@ -3,13 +3,14 @@ import { Image, Pressable, Text, TextInput, View } from "react-native";
 import { SingInIcon } from "../../components/Icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { loginFetch } from "../../redux/slices/login/loginFetch";
+import { checkLogin, loginFetch } from "../../redux/slices/login/loginController";
 import { useNavigation } from "@react-navigation/native";
 import { styled } from "nativewind";
 
 const StyledPressable = styled(Pressable);
 
 export default function Login() {
+
   const navigation = useNavigation();
 
   const status = useSelector((state) => state.loginStatus.status);
@@ -18,11 +19,15 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+
   useEffect(() => {
-    if (status == "login") {
+
+    const loginStatus = dispatch(checkLogin());
+    if (loginStatus) {
       navigation.navigate("home");
     }
   }, [status]);
+
 
   const loginForm = () => {
     const data = {
@@ -31,6 +36,7 @@ export default function Login() {
     };
     dispatch(loginFetch(data));
   };
+
 
   return (
     <View className="flex-1 bg-alnago-1 justify-center items-center">
@@ -52,7 +58,7 @@ export default function Login() {
             value={username}
             name="username"
             onChangeText={(text) => setUsername(text)}
-          />
+          />          
           <TextInput
             name="password"
             value={password}
@@ -62,6 +68,7 @@ export default function Login() {
             placeholder="Contraseña"
           />
         </View>
+
 
         <Link asChild href="./inventory" className="m-5">
           <StyledPressable className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4 active:opacity-75 active:scale-90">
