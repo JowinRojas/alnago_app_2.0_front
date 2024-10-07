@@ -9,6 +9,7 @@ import { styled } from "nativewind";
 
 const StyledPressable = styled(Pressable);
 
+
 export default function Login() {
 
   const navigation = useNavigation();
@@ -16,14 +17,15 @@ export default function Login() {
   const status = useSelector((state) => state.loginStatus.status);
 
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
 
   useEffect(() => {
 
-    const loginStatus = dispatch(checkLogin());
-    if (loginStatus) {
+    dispatch(checkLogin());
+    
+    if (status=="login") {
       navigation.navigate("home");
     }
   }, [status]);
@@ -31,7 +33,7 @@ export default function Login() {
 
   const loginForm = () => {
     const data = {
-      username,
+      email,
       password,
     };
     dispatch(loginFetch(data));
@@ -54,10 +56,10 @@ export default function Login() {
         <View className="w-full justify-center items-center gap-4">
           <TextInput
             className="w-10/12 h-10 border-2 rounded-xl text-alnago-2 text-2xl px-2 py-1"
-            placeholder="Usuario"
-            value={username}
-            name="username"
-            onChangeText={(text) => setUsername(text)}
+            placeholder="email"
+            value={email}
+            name="email"
+            onChangeText={(text) => setEmail(text)}
           />          
           <TextInput
             name="password"
@@ -77,9 +79,9 @@ export default function Login() {
           </StyledPressable>
         </Link>
 
-        {/* <Pressable onPress={loginForm} className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4">
+         <Pressable onPress={()=>loginForm()} className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4">
           <Text>Login</Text>
-        </Pressable> */}
+        </Pressable> 
       </View>
     </View>
   );
