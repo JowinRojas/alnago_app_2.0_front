@@ -28,16 +28,13 @@ export default function Login() {
   }, [status]);
 
   const loginForm = () => {
-    const user = email;
-    const pass = password;
-    if (user == "" || pass == "") {
+    if (email == "" || password == "") {
       Alert.alert("Todos los campos son obligatorios");
       return;
-    }else{
-
+    } else {
       const data = {
-        user,
-        pass,
+        email,
+        password,
       };
       dispatch(loginFetch(data));
     }
