@@ -1,23 +1,27 @@
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { ScrollView, Text, View } from "react-native";
 import Inventory from "../components/inventory/Inventory";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkLogin } from "../redux/slices/login/loginController";
-import { useNavigation } from "@react-navigation/native";
+
 
 
 export default function InventoryHome() {
 
 
-
+  const router = useRouter();
   const dispatch = useDispatch();
-  const navigation = useNavigation();
   const status = useSelector((state) => state.loginStatus.status);
   
+
   useEffect(()=>{
+
     dispatch(checkLogin())
-  },[])
+    if(status=='offline'){
+      router.push("/")
+    }
+  },[status])
   
 
 

@@ -1,20 +1,30 @@
 import { Link, useRouter } from "expo-router";
 import { styled } from "nativewind";
 import { Alert, Image, Pressable, Text, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutFetch } from "../redux/slices/login/loginController";
+
 
 const StyledPressable = styled(Pressable);
 
 const Rutas = ({ closeDrawer }) => {
   const router = useRouter();
+
+  const dispatch = useDispatch();
+
+
   const cerrarSesion = () => {
-    Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
-      {
-        text: "Cancel",
-      },
-      { cancelable: false, text: "Si", onPress: () => router.push("/") },
-    ]);
+    // Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
+    //   {
+    //     text: "Cancel",
+    //   },
+    //   { cancelable: false, text: "Si", onPress: () => router.push("/") },
+    // ]);
+    dispatch(logoutFetch())
     closeDrawer();
   };
+
+  
 
   return (
     <View className="w-full h-full bg-alnago-1 justify-center items-center">
