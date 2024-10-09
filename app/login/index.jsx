@@ -1,21 +1,20 @@
-import { Link, Stack } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import { Image, Pressable, Text, TextInput, View } from "react-native";
 import { SingInIcon } from "../../components/Icons";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkLogin, loginFetch } from "../../redux/slices/login/loginController";
-import { useNavigation } from "@react-navigation/native";
 import { styled } from "nativewind";
+
 
 const StyledPressable = styled(Pressable);
 
-
 export default function Login() {
 
-  const navigation = useNavigation();
-
+  
+  const router = useRouter();
   const status = useSelector((state) => state.loginStatus.status);
-
+  console.log(status)
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,7 @@ export default function Login() {
     dispatch(checkLogin());
     
     if (status=="login") {
-      navigation.navigate("home");
+      router.push("inventory");
     }
   }, [status]);
 

@@ -17,10 +17,13 @@ export const loginFetch = (payload) => async (dispatch) => {
 
         }).then(res => res.json());
 
-        if(response){      
+        
+        if(response){
+
+          const stringToken = response.token.toString();
             const storeData = async () => {
               try {
-                await AsyncStorage.setItem('token', response.token);
+                await AsyncStorage.setItem('token', stringToken);
               } catch (e) {
                 console.log(e)
               }
@@ -39,23 +42,8 @@ export const loginFetch = (payload) => async (dispatch) => {
 
   export const checkLogin = () => async (dispatch) => {
 
-
-    const getToken = async () => {
-        try {
-          const token = await AsyncStorage.getItem('token');
-          if(token){
-            return token
-          } else {
-            return 'no hay token'
-          }
-        } catch (e) {
-         console.log(e)
-        }
-      };
-    const token = getToken();
-
-    console.log(token)
-    
+    const token = await AsyncStorage.getItem('token');
+     
     if(token){
 
       try {
@@ -80,6 +68,16 @@ export const loginFetch = (payload) => async (dispatch) => {
 
   };
 
+    export const logoutFetch = () => async (dispatch) => {
+      
+        try {
+          await AsyncStorage.setItem('token', '');
+          dispatch(logout());
+        } catch (e) {
+          console.log(e)
+        }
+      
+    }
 
   // const response = await axios.get('http://tu-servidor.com/protected', {
   //   headers: {
