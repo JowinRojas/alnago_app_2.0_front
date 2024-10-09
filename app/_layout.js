@@ -37,12 +37,7 @@ export default function Layout() {
               headerTitleStyle: {
                 fontSize: 23,
               },
-              headerLeft: () => (
-                // <Link href="/home" className="w-12 h-9">
-                <Link href="/inventory">
-                  <LogoTecho />
-                </Link>
-              ),
+              headerLeft: () => <LogoTecho />,
               headerRight: () => (
                 <StyledPressable
                   className={"active:opacity-50 active:scale-95"}

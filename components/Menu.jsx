@@ -4,7 +4,6 @@ import { Alert, Image, Pressable, Text, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutFetch } from "../redux/slices/login/loginController";
 
-
 const StyledPressable = styled(Pressable);
 
 const Rutas = ({ closeDrawer }) => {
@@ -12,19 +11,21 @@ const Rutas = ({ closeDrawer }) => {
 
   const dispatch = useDispatch();
 
-
   const cerrarSesion = () => {
-    // Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
-    //   {
-    //     text: "Cancel",
-    //   },
-    //   { cancelable: false, text: "Si", onPress: () => router.push("/") },
-    // ]);
-    dispatch(logoutFetch())
-    closeDrawer();
+    Alert.alert("Confirmar", "¿Cerrar la sesión actual?", [
+      {
+        text: "Cancel",
+      },
+      {
+        cancelable: false,
+        text: "Si",
+        onPress: () => {
+          dispatch(logoutFetch());
+          closeDrawer();
+        },
+      },
+    ]);
   };
-
-  
 
   return (
     <View className="w-full h-full bg-alnago-1 justify-center items-center">
@@ -38,31 +39,19 @@ const Rutas = ({ closeDrawer }) => {
         </View>
 
         <View className="gap-y-5" onPress={closeDrawer}>
-          {/* <Link asChild href="/home" onPress={closeDrawer}>
-            <StyledPressable className={"active:scale-90 active:opacity-50"}>
-              <Text className="text-2xl">CALENDARIO</Text>
-            </StyledPressable>
-          </Link> */}
-          {/* <Link asChild href="/home" onPress={closeDrawer}>
-            <StyledPressable className={"active:scale-90 active:opacity-50"}>
-              <Text className="text-2xl">LLAVES</Text>
-            </StyledPressable>
-          </Link> */}
           <Link asChild href="/inventory" onPress={closeDrawer}>
             <StyledPressable className={"active:scale-90 active:opacity-50"}>
               <Text className="text-2xl">INVENTARIOS</Text>
             </StyledPressable>
           </Link>
-          {/* <Link asChild href="/prueba" onPress={closeDrawer}>
-            <StyledPressable className={"active:scale-95 active:opacity-60"}>
-              <Text className="text-2xl">CONFIGURACIÓN</Text>
-            </StyledPressable>
-          </Link> */}
         </View>
 
-          <StyledPressable className={"active:scale-90 active:opacity-50"} onPress={cerrarSesion}>
-            <Text className="text-2xl">CERRAR SESIÓN</Text>
-          </StyledPressable>
+        <StyledPressable
+          className={"active:scale-90 active:opacity-50"}
+          onPress={cerrarSesion}
+        >
+          <Text className="text-2xl">CERRAR SESIÓN</Text>
+        </StyledPressable>
       </View>
     </View>
   );
