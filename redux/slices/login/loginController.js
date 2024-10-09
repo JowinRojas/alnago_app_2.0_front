@@ -18,7 +18,7 @@ export const loginFetch = (payload) => async (dispatch) => {
         }).then(res => res.json());
 
         
-        if(response){
+        if(response.token){
 
           const stringToken = response.token.toString();
             const storeData = async () => {
