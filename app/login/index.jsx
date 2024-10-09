@@ -12,9 +12,9 @@ import { styled } from "nativewind";
 const StyledPressable = styled(Pressable);
 
 export default function Login() {
+  
   const router = useRouter();
   const status = useSelector((state) => state.loginStatus.status);
-  console.log(status);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -72,13 +72,17 @@ export default function Login() {
         </View>
 
         <View className="m-5">
+
+
           <StyledPressable
             className="flex-row justify-between items-center bg-alnago-2 rounded-md px-4 active:opacity-75 active:scale-90"
-            onPress={loginForm}
+            onPress={()=>loginForm()}
           >
             <Text className="text-alnago-1 text-2xl p-1">Ingresar</Text>
             <SingInIcon />
           </StyledPressable>
+
+
         </View>
       </View>
     </View>
