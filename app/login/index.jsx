@@ -28,30 +28,29 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    
     dispatch(checkLogin());
-    setTimeout(() => {
-      setLoading(false);
-    }, 500);
     if (status == "login") {
       setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
       router.push("inventory");
     }
   }, [status]);
 
   const loginForm = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    },2000);
     if (email == "" || password == "") {
-      Alert.alert("Todos los campos son obligatorios");
+      Alert.alert("Debe ingresar un correo y una contraseña");
       return;
     } else {
+      setLoading(true);
       const data = {
         email,
         password,
       };
+      setTimeout(() => {
+        setLoading(false);
+      }, 5000);
       dispatch(loginFetch(data));
     }
   };
