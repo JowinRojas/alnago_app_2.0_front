@@ -32,7 +32,7 @@ export const loginFetch = (payload) => async (dispatch) => {
       dispatch(login());
     }
   } catch (error) {
-    console.log(error);
+    console.log("Error: ",error);
   }
 };
 

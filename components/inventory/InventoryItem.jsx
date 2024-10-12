@@ -16,8 +16,6 @@ import {
 } from "../Icons";
 import { Comment } from "./Comment";
 import { useState } from "react";
-import Videos from "./Videos";
-import { Video } from "expo-av";
 
 const InventoryItem = ({ name, status, fotos, videos, detalles }) => {
   const dispatch = useDispatch();

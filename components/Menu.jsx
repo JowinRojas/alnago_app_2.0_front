@@ -1,7 +1,7 @@
 import { Link, useRouter } from "expo-router";
 import { styled } from "nativewind";
 import { Alert, Image, Pressable, Text, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logoutFetch } from "../redux/slices/login/loginController";
 
 const StyledPressable = styled(Pressable);
