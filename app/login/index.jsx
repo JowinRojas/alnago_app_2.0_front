@@ -7,6 +7,7 @@ import {
   Text,
   TextInput,
   View,
+  BackHandler,
 } from "react-native";
 import { SingInIcon } from "../../components/Icons";
 import { useEffect, useState } from "react";
@@ -20,6 +21,8 @@ import { styled } from "nativewind";
 const StyledPressable = styled(Pressable);
 
 export default function Login() {
+
+
   const router = useRouter();
   const status = useSelector((state) => state.loginStatus.status);
   const dispatch = useDispatch();
@@ -28,17 +31,48 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+
     dispatch(checkLogin());
+
     if (status == "login") {
       setLoading(true);
       setTimeout(() => {
         setLoading(false);
       }, 500);
-      router.push("inventory");
+      router.push("inventory");      
     }
+
+    const backAction = () => {
+      // Bloquea el botón de retroceso mostrando una alerta, por ejemplo
+      Alert.alert("¡Espera!", "¿Estás seguro de que deseas Cerrar Sesion?", [
+        {
+          text: "Cancelar",
+          onPress: () => null,
+          style: "cancel"
+        },
+        { text: "Salir", onPress: () => BackHandler.exitApp() }
+      ]);
+      return true; 
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    
+    return () => backHandler.remove();
+
+
   }, [status]);
 
+
+
+
+
+
   const loginForm = () => {
+
     if (email == "" || password == "") {
       Alert.alert("Debe ingresar un correo y una contraseña");
       return;
