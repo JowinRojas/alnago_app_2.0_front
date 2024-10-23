@@ -12,16 +12,14 @@ export const sendInv = async ({
 }) => {
 
   const token = await SecureStore.getItemAsync('token');
-  const data = new FormData();
-  console.log(token)
+  const data = new FormData();  
   fotos.map((foto) =>
     data.append("fotos", { uri: foto, name: "photito.jpg", type: "image/jpeg" })
   );
 
 
   if (videos) {
-    videos.map((video) => {
-      console.log("Video URI: ", video);
+    videos.map((video) => {      
       data.append("videos", {
         uri: video,
         name: "video.mp4",
@@ -33,7 +31,7 @@ export const sendInv = async ({
   data.append("direccion", direccionInventario);
 
   try {
-    console.log(data)
+    
     const response = await fetch(`${URLbase}/google/images`, {
       method: "POST",
       body: data,
@@ -43,7 +41,7 @@ export const sendInv = async ({
         'Authorization': `${token}`,
       },
     });
-    console.log(response)
+    
   } catch (error) {
     console.log("Error: ", error);
   }
